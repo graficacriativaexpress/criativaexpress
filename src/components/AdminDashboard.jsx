@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Edit2, Trash2, Plus, LogOut, Eye, EyeOff } from 'lucide-react'
+import { Edit2, Trash2, Plus, LogOut, Eye, EyeOff, Upload, Loader, Image as ImageIcon } from 'lucide-react'
 
 export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpdate, initialProducts, config }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -20,6 +20,10 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
   const [whatsappNumber, setWhatsappNumber] = useState('5561993629392')
   const [infinityPayHandle, setInfinityPayHandle] = useState('capitalqueen')
   const [localConfig, setLocalConfig] = useState(config)
+  const [uploadingImage, setUploadingImage] = useState(false)
+  const [uploadingSlide, setUploadingSlide] = useState(false)
+  const [apiKey, setApiKey] = useState('')
+  const [generatingDescription, setGeneratingDescription] = useState(false)
 
   const ADMIN_PASSWORD = 'admin123'
 
@@ -30,6 +34,98 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
       setPassword('')
     } else {
       alert('Senha incorreta!')
+    }
+  }
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    setUploadingImage(true)
+    try {
+      const formDataUpload = new FormData()
+      formDataUpload.append('image', file)
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formDataUpload
+      })
+
+      const data = await response.json()
+      if (data.success) {
+        setFormData({ ...formData, image: data.url })
+      } else {
+        alert('Erro ao fazer upload: ' + data.message)
+      }
+    } catch (error) {
+      alert('Erro ao fazer upload: ' + error.message)
+    } finally {
+      setUploadingImage(false)
+    }
+  }
+
+  const handleSlideImageUpload = async (e, idx) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    setUploadingSlide(true)
+    try {
+      const formDataUpload = new FormData()
+      formDataUpload.append('image', file)
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formDataUpload
+      })
+
+      const data = await response.json()
+      if (data.success) {
+        handleUpdateSlide(idx, 'image', data.url)
+      } else {
+        alert('Erro ao fazer upload: ' + data.message)
+      }
+    } catch (error) {
+      alert('Erro ao fazer upload: ' + error.message)
+    } finally {
+      setUploadingSlide(false)
+    }
+  }
+
+  const generateDescription = async () => {
+    if (!apiKey) {
+      alert('Por favor, configure a API Key primeiro!')
+      return
+    }
+
+    if (!formData.name) {
+      alert('Por favor, preencha o nome do produto primeiro!')
+      return
+    }
+
+    setGeneratingDescription(true)
+    try {
+      const response = await fetch('/api/generate-description', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          productName: formData.name,
+          category: formData.category,
+          apiKey: apiKey
+        })
+      })
+
+      const data = await response.json()
+      if (data.success) {
+        setFormData({ ...formData, description: data.description })
+      } else {
+        alert('Erro ao gerar descrição: ' + data.message)
+      }
+    } catch (error) {
+      alert('Erro ao gerar descrição: ' + error.message)
+    } finally {
+      setGeneratingDescription(false)
     }
   }
 
@@ -279,13 +375,30 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Descrição</label>
-                    <textarea
-                      value={formData.description}
-                      onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                      rows="3"
-                      required
-                    />
+                    <div className="flex gap-2">
+                      <textarea
+                        value={formData.description}
+                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                        className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        rows="3"
+                        required
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={generateDescription}
+                      disabled={generatingDescription || !apiKey}
+                      className="mt-2 w-full text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 disabled:opacity-50 flex items-center justify-center gap-2"
+                    >
+                      {generatingDescription ? (
+                        <>
+                          <Loader size={16} className="animate-spin" />
+                          Gerando...
+                        </>
+                      ) : (
+                        '🤖 Gerar com IA'
+                      )}
+                    </button>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Preço (R$)</label>
@@ -309,14 +422,47 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">URL da Imagem</label>
-                    <input
-                      type="url"
-                      value={formData.image}
-                      onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                      placeholder="https://..."
-                    />
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Upload de Imagem</label>
+                    <div className="flex gap-2">
+                      <label className="flex-1 flex items-center justify-center px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-purple-500 transition">
+                        <div className="flex items-center gap-2">
+                          {uploadingImage ? (
+                            <>
+                              <Loader size={16} className="animate-spin" />
+                              Enviando...
+                            </>
+                          ) : (
+                            <>
+                              <Upload size={16} />
+                              Escolher foto
+                            </>
+                          )}
+                        </div>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleImageUpload}
+                          disabled={uploadingImage}
+                          className="hidden"
+                        />
+                      </label>
+                    </div>
+                    {formData.image && (
+                      <div className="mt-2 relative">
+                        <img
+                          src={formData.image}
+                          alt="Preview"
+                          className="w-full h-32 object-cover rounded-lg"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setFormData({ ...formData, image: '' })}
+                          className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded hover:bg-red-600"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    )}
                   </div>
                   <div className="flex items-center gap-2">
                     <input
@@ -356,6 +502,7 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
                   <table className="w-full">
                     <thead className="bg-gray-100 border-b">
                       <tr>
+                        <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Imagem</th>
                         <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Produto</th>
                         <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Categoria</th>
                         <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Preço</th>
@@ -366,6 +513,19 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
                     <tbody className="divide-y">
                       {products.map((product) => (
                         <tr key={product.id} className="hover:bg-gray-50">
+                          <td className="px-4 py-3">
+                            {product.image ? (
+                              <img
+                                src={product.image}
+                                alt={product.name}
+                                className="h-10 w-10 object-cover rounded"
+                              />
+                            ) : (
+                              <div className="h-10 w-10 bg-gray-200 rounded flex items-center justify-center">
+                                <ImageIcon size={16} className="text-gray-400" />
+                              </div>
+                            )}
+                          </td>
                           <td className="px-4 py-3 text-sm text-gray-800">{product.name}</td>
                           <td className="px-4 py-3 text-sm text-gray-600">{product.category}</td>
                           <td className="px-4 py-3 text-sm text-gray-800">R$ {product.price.toFixed(2)}</td>
@@ -441,6 +601,51 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
                         placeholder="Ex: from-purple-600 to-blue-600"
                       />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Upload de Imagem (Recomendado: 1920x600px)
+                      </label>
+                      <div className="flex gap-2">
+                        <label className="flex-1 flex items-center justify-center px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-purple-500 transition">
+                          <div className="flex items-center gap-2">
+                            {uploadingSlide ? (
+                              <>
+                                <Loader size={16} className="animate-spin" />
+                                Enviando...
+                              </>
+                            ) : (
+                              <>
+                                <Upload size={16} />
+                                Escolher imagem
+                              </>
+                            )}
+                          </div>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => handleSlideImageUpload(e, idx)}
+                            disabled={uploadingSlide}
+                            className="hidden"
+                          />
+                        </label>
+                      </div>
+                      {slide.image && (
+                        <div className="mt-2 relative">
+                          <img
+                            src={slide.image}
+                            alt="Slide preview"
+                            className="w-full h-40 object-cover rounded-lg"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => handleUpdateSlide(idx, 'image', '')}
+                            className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded hover:bg-red-600"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -560,19 +765,18 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
 
         {/* Configurações */}
         {activeTab === 'settings' && (
-          <div className="bg-white rounded-lg shadow p-6 max-w-2xl">
+          <div className="bg-white rounded-lg shadow p-6">
             <h2 className="text-2xl font-bold mb-6 text-gray-800">Configurações</h2>
-            <div className="space-y-6">
+            <div className="space-y-6 max-w-2xl">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Número de WhatsApp</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Número WhatsApp</label>
                 <input
-                  type="text"
+                  type="tel"
                   value={whatsappNumber}
                   onChange={(e) => setWhatsappNumber(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  placeholder="55..."
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                  placeholder="5561993629392"
                 />
-                <p className="text-xs text-gray-500 mt-1">Formato: 55 + DDD + número</p>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Handle Infinity Pay</label>
@@ -580,13 +784,24 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
                   type="text"
                   value={infinityPayHandle}
                   onChange={(e) => setInfinityPayHandle(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  placeholder="seu_handle"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                  placeholder="capitalqueen"
                 />
               </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">API Key para IA (OpenAI)</label>
+                <input
+                  type="password"
+                  value={apiKey}
+                  onChange={(e) => setApiKey(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                  placeholder="sk-..."
+                />
+                <p className="text-xs text-gray-500 mt-1">Deixe em branco para desabilitar geração de descrições com IA</p>
+              </div>
               <button
-                onClick={() => alert('Configurações salvas com sucesso!')}
-                className="bg-purple-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-purple-700 transition"
+                onClick={handleSaveConfig}
+                className="w-full bg-purple-600 text-white py-2 rounded-lg font-semibold hover:bg-purple-700 transition"
               >
                 Salvar Configurações
               </button>

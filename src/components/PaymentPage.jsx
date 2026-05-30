@@ -56,8 +56,8 @@ export default function PaymentPage() {
         ]
       }
 
-      // Chamar a API da Infinity Pay
-      const response = await fetch('https://api.checkout.infinitepay.io/links', {
+      // Chamar o endpoint do servidor (proxy seguro)
+      const response = await fetch('/api/payment/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -66,10 +66,14 @@ export default function PaymentPage() {
       })
 
       if (!response.ok) {
-        throw new Error('Erro ao gerar link de pagamento')
+        const errorData = await response.json()
+        throw new Error(errorData.message || 'Erro ao gerar link de pagamento')
       }
 
       const data = await response.json()
+      if (!data.success || !data.url) {
+        throw new Error(data.message || 'Erro ao gerar link de pagamento')
+      }
       setPaymentLink(data.url)
       
       // Limpar formulário

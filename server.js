@@ -4,6 +4,8 @@ import axios from 'axios'
 import dotenv from 'dotenv'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import multer from 'multer'
+import fs from 'fs'
 
 dotenv.config()
 
@@ -17,12 +19,156 @@ const PORT = process.env.PORT || 3000
 app.use(cors())
 app.use(express.json())
 
+// Configurar multer para upload de imagens
+const uploadDir = path.join(__dirname, 'public', 'uploads')
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true })
+}
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, uploadDir)
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, uniqueSuffix + path.extname(file.originalname))
+  }
+})
+
+const upload = multer({
+  storage,
+  limits: { fileSize: 5 * 1024 * 1024 },
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = /jpeg|jpg|png|gif|webp/
+    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase())
+    const mimetype = allowedTypes.test(file.mimetype)
+    if (mimetype && extname) {
+      return cb(null, true)
+    } else {
+      cb(new Error('Apenas imagens sao permitidas'))
+    }
+  }
+})
+
 // Servir arquivos estáticos do Vite
 app.use(express.static(path.join(__dirname, 'dist')))
+app.use('/uploads', express.static(uploadDir))
 
 // Configurações
 const WHATSAPP_NUMBER = process.env.WHATSAPP_NUMBER || '5561993629392'
 const INFINITEPAY_HANDLE = process.env.INFINITEPAY_HANDLE || 'capitalqueen'
+
+// Endpoint para gerar descrição com IA
+app.post('/api/generate-description', async (req, res) => {
+  try {
+    const { productName, category, apiKey } = req.body
+
+    if (!apiKey) {
+      return res.status(400).json({
+        success: false,
+        message: 'API Key não fornecida'
+      })
+    }
+
+    const response = await axios.post('https://api.openai.com/v1/chat/completions', {
+      model: 'gpt-3.5-turbo',
+      messages: [
+        {
+          role: 'system',
+          content: 'Você é um especialista em marketing de semijoias. Crie descrições atraentes e profissionais para produtos de tags personalizadas.'
+        },
+        {
+          role: 'user',
+          content: `Crie uma descrição atraente e profissional para este produto:\n\nNome: ${productName}\nCategoria: ${category}\n\nA descrição deve ser concisa (2-3 linhas), destacar os benefícios e ser persuasiva.`
+        }
+      ],
+      max_tokens: 150
+    }, {
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const description = response.data.choices[0].message.content.trim()
+    res.json({
+      success: true,
+      description: description
+    })
+  } catch (error) {
+    console.error('Erro ao gerar descrição:', error.response?.data || error.message)
+    res.status(500).json({
+      success: false,
+      message: error.response?.data?.error?.message || 'Erro ao gerar descrição com IA'
+    })
+  }
+})
+
+// Endpoint para upload de imagens
+app.post('/api/upload', upload.single('image'), (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: 'Nenhum arquivo foi enviado'
+      })
+    }
+
+    const imageUrl = `/uploads/${req.file.filename}`
+    res.json({
+      success: true,
+      url: imageUrl,
+      filename: req.file.filename
+    })
+  } catch (error) {
+    console.error('Erro ao fazer upload:', error)
+    res.status(500).json({
+      success: false,
+      message: error.message || 'Erro ao fazer upload da imagem'
+    })
+  }
+})
+
+// Endpoint para gerar link de pagamento (proxy seguro)
+app.post('/api/payment/generate', async (req, res) => {
+  try {
+    const { handle, redirect_url, webhook_url, order_nsu, customer, items } = req.body
+
+    // Validar dados
+    if (!handle || !redirect_url || !webhook_url || !order_nsu || !customer || !items) {
+      return res.status(400).json({
+        success: false,
+        message: 'Dados incompletos para gerar link de pagamento'
+      })
+    }
+
+    // Chamar API da Infinity Pay do servidor (seguro)
+    const response = await axios.post('https://api.checkout.infinitepay.io/links', {
+      handle,
+      redirect_url,
+      webhook_url,
+      order_nsu,
+      customer,
+      items
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    // Retornar URL do pagamento
+    res.json({
+      success: true,
+      url: response.data.url
+    })
+  } catch (error) {
+    console.error('Erro ao gerar link de pagamento:', error.response?.data || error.message)
+    res.status(500).json({
+      success: false,
+      message: error.response?.data?.message || 'Erro ao gerar link de pagamento'
+    })
+  }
+})
 
 // Webhook da Infinity Pay
 app.post('/api/webhook/infinitepay', async (req, res) => {
