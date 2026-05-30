@@ -21,8 +21,8 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname, 'dist')))
 
 // Configurações
-const WHATSAPP_NUMBER = '5561993629392'
-const INFINITEPAY_HANDLE = 'capitalqueen'
+const WHATSAPP_NUMBER = process.env.WHATSAPP_NUMBER || '5561993629392'
+const INFINITEPAY_HANDLE = process.env.INFINITY_PAY_HANDLE || 'capitalqueen'
 
 // Webhook da Infinity Pay
 app.post('/api/webhook/infinitepay', async (req, res) => {
