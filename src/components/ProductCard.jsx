@@ -1,8 +1,9 @@
-import { MessageCircle, Heart, Star } from 'lucide-react'
+import { MessageCircle, Heart, Star, X } from 'lucide-react'
 import { useState } from 'react'
 
 export default function ProductCard({ product, featured = false, whatsappNumber = '5561993629392' }) {
   const [isFavorite, setIsFavorite] = useState(false)
+  const [showLightbox, setShowLightbox] = useState(false)
 
   const handleWhatsApp = () => {
     const message = `Olá! Gostaria de fazer um pedido do kit: ${product.name}\n\nDescrição: ${product.description}\n\nPreço: ${product.price ? `R$ ${product.price.toFixed(2)}` : 'Consultar'}`
@@ -21,7 +22,7 @@ export default function ProductCard({ product, featured = false, whatsappNumber 
       )}
 
       {/* Image Container */}
-      <div className="relative h-56 overflow-hidden bg-gray-100">
+      <div className="relative h-56 overflow-hidden bg-gray-100 cursor-pointer" onClick={() => setShowLightbox(true)}>
         <img
           src={product.image}
           alt={product.name}
@@ -87,6 +88,25 @@ export default function ProductCard({ product, featured = false, whatsappNumber 
           Fazer Pedido
         </button>
       </div>
+
+      {/* Lightbox Modal */}
+      {showLightbox && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4" onClick={() => setShowLightbox(false)}>
+          <div className="relative max-w-4xl max-h-[90vh] w-full" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setShowLightbox(false)}
+              className="absolute -top-10 right-0 text-white hover:text-gray-300 transition"
+            >
+              <X size={32} />
+            </button>
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-full object-contain"
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
