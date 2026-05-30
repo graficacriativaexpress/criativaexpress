@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #faf8f3;
+  color: #413d35;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: #413d35;
+}
+
+/* Scrollbar customizado */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1efed;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c3ab75;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b99d5e;
+}
+
+/* Transições suaves */
+a, button, input, select, textarea {
+  transition: all 0.3s ease;
+}
+
+/* Botões premium */
+.btn-primary {
+  @apply px-8 py-3 bg-gradient-to-r from-primary-700 to-accent-700 text-white rounded-lg font-semibold hover:shadow-premium transform hover:scale-105 transition-all duration-300;
+}
+
+.btn-secondary {
+  @apply px-8 py-3 border-2 border-primary-700 text-primary-700 rounded-lg font-semibold hover:bg-primary-50 transition-all duration-300;
+}
+
+.btn-whatsapp {
+  @apply px-6 py-2 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600 transform hover:scale-105 transition-all duration-300 flex items-center gap-2;
+}
+
+/* Cards elegantes */
+.card-elegant {
+  @apply bg-white rounded-xl shadow-elegant hover:shadow-premium transition-all duration-300 overflow-hidden;
+}
+
+.card-elegant:hover {
+  transform: translateY(-5px);
+}
+
+/* Gradientes premium */
+.gradient-primary {
+  background: linear-gradient(135deg, #c3ab75 0%, #f6c387 100%);
+}
+
+.gradient-dark {
+  background: linear-gradient(135deg, #413d35 0%, #5f5b51 100%);
+}
+
+/* Efeito de brilho */
+.shimmer {
+  background: linear-gradient(90deg, #f1efed 25%, #e3dfdb 50%, #f1efed 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Overlay elegante */
+.overlay-dark {
+  background: linear-gradient(135deg, rgba(65, 61, 53, 0.7) 0%, rgba(95, 91, 81, 0.5) 100%);
+}
+
+/* Animação de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+}
