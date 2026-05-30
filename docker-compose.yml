@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - WHATSAPP_NUMBER=5561993629392
+      - INFINITEPAY_HANDLE=capitalqueen
+      - PORT=3000
+    restart: unless-stopped

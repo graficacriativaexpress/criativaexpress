@@ -1,19 +1,27 @@
-import { MessageCircle, Heart } from 'lucide-react'
+import { MessageCircle, Heart, Star } from 'lucide-react'
 import { useState } from 'react'
 
-export default function ProductCard({ product, whatsappNumber = '5511999999999' }) {
+export default function ProductCard({ product, featured = false, whatsappNumber = '5561993629392' }) {
   const [isFavorite, setIsFavorite] = useState(false)
 
   const handleWhatsApp = () => {
-    const message = `Olá! Gostaria de fazer um pedido do kit: ${product.name}\n\nDescrição: ${product.description}\n\nPreço: ${product.price ? `R$ ${product.price}` : 'Consultar'}`
+    const message = `Olá! Gostaria de fazer um pedido do kit: ${product.name}\n\nDescrição: ${product.description}\n\nPreço: ${product.price ? `R$ ${product.price.toFixed(2)}` : 'Consultar'}`
     const encodedMessage = encodeURIComponent(message)
     window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank')
   }
 
   return (
-    <div className="card-elegant group">
+    <div className={`relative bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group h-full flex flex-col ${featured ? 'ring-2 ring-yellow-400' : ''}`}>
+      {/* Featured Badge */}
+      {featured && (
+        <div className="absolute top-3 right-3 z-20 bg-yellow-400 text-gray-800 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+          <Star size={14} fill="currentColor" />
+          Destaque
+        </div>
+      )}
+
       {/* Image Container */}
-      <div className="relative h-64 sm:h-72 overflow-hidden bg-gradient-to-br from-primary-50 to-accent-50">
+      <div className="relative h-56 overflow-hidden bg-gray-100">
         <img
           src={product.image}
           alt={product.name}
@@ -21,61 +29,61 @@ export default function ProductCard({ product, whatsappNumber = '5511999999999' 
         />
         
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
 
         {/* Favorite Button */}
         <button
           onClick={() => setIsFavorite(!isFavorite)}
-          className="absolute top-4 right-4 p-2 bg-white rounded-full shadow-soft hover:shadow-elegant transition-all duration-300 z-10"
+          className="absolute top-3 left-3 p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 z-10"
         >
           <Heart
-            size={20}
-            className={isFavorite ? 'fill-red-500 text-red-500' : 'text-dark-800'}
+            size={18}
+            className={isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-600'}
           />
         </button>
 
         {/* Category Badge */}
-        <div className="absolute top-4 left-4 bg-accent-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+        <div className="absolute bottom-3 left-3 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
           {product.category}
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-6">
+      <div className="p-4 flex-1 flex flex-col">
         {/* Title */}
-        <h3 className="font-serif text-xl font-bold text-dark-900 mb-2 line-clamp-2">
+        <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 text-sm md:text-base">
           {product.name}
         </h3>
 
         {/* Description */}
-        <p className="text-dark-700 text-sm mb-4 line-clamp-2">
+        <p className="text-gray-600 text-xs md:text-sm mb-3 line-clamp-2 flex-1">
           {product.description}
         </p>
 
-        {/* Price */}
-        {product.price && (
-          <div className="mb-4 pb-4 border-b border-primary-100">
-            <p className="text-2xl font-bold text-primary-700">
-              R$ {product.price.toFixed(2).replace('.', ',')}
-            </p>
+        {/* Specifications */}
+        {product.specs && product.specs.length > 0 && (
+          <div className="mb-3 space-y-1 text-xs text-gray-600">
+            {product.specs.slice(0, 2).map((spec, idx) => (
+              <p key={idx} className="line-clamp-1">• {spec}</p>
+            ))}
           </div>
         )}
 
-        {/* Specifications */}
-        {product.specs && (
-          <div className="mb-4 space-y-1 text-sm text-dark-600">
-            {product.specs.map((spec, idx) => (
-              <p key={idx}>• {spec}</p>
-            ))}
+        {/* Price */}
+        {product.price > 0 && (
+          <div className="mb-3 pb-3 border-t border-gray-200">
+            <p className="text-lg md:text-xl font-bold text-purple-600">
+              R$ {product.price.toFixed(2).replace('.', ',')}
+            </p>
           </div>
         )}
 
         {/* CTA Button */}
         <button
           onClick={handleWhatsApp}
-          className="btn-whatsapp w-full justify-center"
+          className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-2 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 text-sm"
         >
-          <MessageCircle size={18} />
+          <MessageCircle size={16} />
           Fazer Pedido
         </button>
       </div>

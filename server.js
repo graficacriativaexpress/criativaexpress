@@ -2,15 +2,23 @@ import express from 'express'
 import cors from 'cors'
 import axios from 'axios'
 import dotenv from 'dotenv'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
 dotenv.config()
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 const app = express()
-const PORT = process.env.PORT || 5001
+const PORT = process.env.PORT || 3000
 
 // Middleware
 app.use(cors())
 app.use(express.json())
+
+// Servir arquivos estáticos do Vite
+app.use(express.static(path.join(__dirname, 'dist')))
 
 // Configurações
 const WHATSAPP_NUMBER = '5561993629392'
@@ -121,6 +129,11 @@ async function simulateWhatsAppNotification(phone, message) {
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Servidor rodando' })
+})
+
+// Servir index.html para todas as rotas (SPA)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'))
 })
 
 // Teste de webhook
