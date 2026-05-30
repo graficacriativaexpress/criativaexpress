@@ -24,12 +24,14 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
   const [uploadingSlide, setUploadingSlide] = useState(false)
   const [apiKey, setApiKey] = useState('')
   const [generatingDescription, setGeneratingDescription] = useState(false)
-
-  const ADMIN_PASSWORD = 'admin123'
+  const [adminPassword, setAdminPassword] = useState('admin123')
+  const [editingPassword, setEditingPassword] = useState(false)
+  const [newPassword, setNewPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
 
   const handleLogin = (e) => {
     e.preventDefault()
-    if (password === ADMIN_PASSWORD) {
+    if (password === adminPassword) {
       setIsAuthenticated(true)
       setPassword('')
     } else {
@@ -93,7 +95,7 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
 
   const generateDescription = async () => {
     if (!apiKey) {
-      alert('Por favor, configure a API Key primeiro!')
+      alert('Por favor, configure a API Key da OpenAI nas Configurações primeiro!')
       return
     }
 
@@ -116,13 +118,20 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
         })
       })
 
+      if (!response.ok) {
+        const errorText = await response.text()
+        throw new Error(`Erro HTTP ${response.status}: ${errorText}`)
+      }
+
       const data = await response.json()
       if (data.success) {
         setFormData({ ...formData, description: data.description })
+        alert('Descrição gerada com sucesso!')
       } else {
-        alert('Erro ao gerar descrição: ' + data.message)
+        alert('Erro ao gerar descrição: ' + (data.message || 'Erro desconhecido'))
       }
     } catch (error) {
+      console.error('Erro detalhado:', error)
       alert('Erro ao gerar descrição: ' + error.message)
     } finally {
       setGeneratingDescription(false)
@@ -214,6 +223,26 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
   const handleSaveConfig = () => {
     onConfigUpdate(localConfig)
     alert('Configurações salvas com sucesso!')
+  }
+
+  const handleChangePassword = () => {
+    if (!newPassword || !confirmPassword) {
+      alert('Preencha todos os campos!')
+      return
+    }
+    if (newPassword !== confirmPassword) {
+      alert('As senhas não conferem!')
+      return
+    }
+    if (newPassword.length < 4) {
+      alert('A senha deve ter pelo menos 4 caracteres!')
+      return
+    }
+    setAdminPassword(newPassword)
+    setNewPassword('')
+    setConfirmPassword('')
+    setEditingPassword(false)
+    alert('Senha alterada com sucesso!')
   }
 
   if (!isAuthenticated) {
@@ -799,6 +828,60 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
                 />
                 <p className="text-xs text-gray-500 mt-1">Deixe em branco para desabilitar geração de descrições com IA</p>
               </div>
+              
+              <div className="border-t pt-6">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">Segurança</h3>
+                {!editingPassword ? (
+                  <button
+                    onClick={() => setEditingPassword(true)}
+                    className="w-full bg-red-500 text-white py-2 rounded-lg font-semibold hover:bg-red-600 transition"
+                  >
+                    Alterar Senha de Admin
+                  </button>
+                ) : (
+                  <div className="space-y-3">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Nova Senha</label>
+                      <input
+                        type="password"
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                        placeholder="Digite a nova senha"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Confirmar Senha</label>
+                      <input
+                        type="password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                        placeholder="Confirme a nova senha"
+                      />
+                    </div>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={handleChangePassword}
+                        className="flex-1 bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition"
+                      >
+                        Salvar Senha
+                      </button>
+                      <button
+                        onClick={() => {
+                          setEditingPassword(false)
+                          setNewPassword('')
+                          setConfirmPassword('')
+                        }}
+                        className="flex-1 bg-gray-300 text-gray-800 py-2 rounded-lg font-semibold hover:bg-gray-400 transition"
+                      >
+                        Cancelar
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+              
               <button
                 onClick={handleSaveConfig}
                 className="w-full bg-purple-600 text-white py-2 rounded-lg font-semibold hover:bg-purple-700 transition"
