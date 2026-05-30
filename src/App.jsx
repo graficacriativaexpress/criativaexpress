@@ -5,7 +5,7 @@ import ProtectedPaymentPage from './components/ProtectedPaymentPage'
 import PaymentConfirmed from './components/PaymentConfirmed'
 import AdminDashboard from './components/AdminDashboard'
 
-const CACHE_VERSION = '2.0' // Incrementar para limpar cache
+const CACHE_VERSION = '3.0' // Incrementar para limpar cache
 
 function App() {
   // Limpar cache antigo se versão mudou
@@ -402,6 +402,36 @@ function App() {
         description: 'Kit tags personalizado - Qualidade premium',
         price: 249.90,
         image: '/zeglam-68455.png',
+        specs: ['Qualidade Premium', 'Personalização disponível', 'Entrega rápida'],
+        featured: false
+      },
+      {
+        id: 25,
+        name: 'Kit Tags Variação 21',
+        category: 'Tags Personalizadas',
+        description: 'Kit tags personalizado - Qualidade premium',
+        price: 249.90,
+        image: '/zeglam-68446.png',
+        specs: ['Qualidade Premium', 'Personalização disponível', 'Entrega rápida'],
+        featured: false
+      },
+      {
+        id: 26,
+        name: 'Kit Tags Variação 22',
+        category: 'Tags Personalizadas',
+        description: 'Kit tags personalizado - Qualidade premium',
+        price: 249.90,
+        image: '/zeglam-68447.png',
+        specs: ['Qualidade Premium', 'Personalização disponível', 'Entrega rápida'],
+        featured: false
+      },
+      {
+        id: 27,
+        name: 'Kit Tags Variação 23',
+        category: 'Tags Personalizadas',
+        description: 'Kit tags personalizado - Qualidade premium',
+        price: 249.90,
+        image: '/zeglam-68448.png',
         specs: ['Qualidade Premium', 'Personalização disponível', 'Entrega rápida'],
         featured: false
       }
