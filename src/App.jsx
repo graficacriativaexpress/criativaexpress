@@ -5,8 +5,21 @@ import ProtectedPaymentPage from './components/ProtectedPaymentPage'
 import PaymentConfirmed from './components/PaymentConfirmed'
 import AdminDashboard from './components/AdminDashboard'
 
+const CACHE_VERSION = '2.0' // Incrementar para limpar cache
+
 function App() {
-  // Configurações globais
+  // Limpar cache antigo se versão mudou
+  useEffect(() => {
+    const savedVersion = localStorage.getItem('semijoias_version')
+    if (savedVersion !== CACHE_VERSION) {
+      localStorage.removeItem('semijoias_config')
+      localStorage.removeItem('semijoias_products')
+      localStorage.setItem('semijoias_version', CACHE_VERSION)
+      window.location.reload()
+    }
+  }, [])
+
+  // Configurações globais com localStorage
   const [config, setConfig] = useState(() => {
     try {
       const saved = localStorage.getItem('semijoias_config')
