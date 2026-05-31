@@ -236,8 +236,19 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
   }
 
   const handleSaveConfig = () => {
-    onConfigUpdate(localConfig)
-    alert('Configurações salvas com sucesso!')
+    try {
+      // Salvar no localStorage
+      localStorage.setItem('semijoias_config', JSON.stringify(localConfig))
+      // Chamar callback para atualizar App.jsx
+      onConfigUpdate(localConfig)
+      alert('Configurações salvas com sucesso!')
+      // Recarregar página após 500ms para sincronizar
+      setTimeout(() => {
+        window.location.reload()
+      }, 500)
+    } catch (e) {
+      alert('Erro ao salvar: ' + e.message)
+    }
   }
 
   const handleChangePassword = () => {
