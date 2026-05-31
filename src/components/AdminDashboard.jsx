@@ -29,10 +29,23 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
+  // Verificar se já está autenticado ao carregar
+  useEffect(() => {
+    try {
+      const isAuth = localStorage.getItem('semijoias_admin_auth')
+      if (isAuth === 'true') {
+        setIsAuthenticated(true)
+      }
+    } catch (e) {
+      console.error('Erro ao verificar autenticação:', e)
+    }
+  }, [])
+
   const handleLogin = (e) => {
     e.preventDefault()
     if (password === adminPassword) {
       setIsAuthenticated(true)
+      localStorage.setItem('semijoias_admin_auth', 'true')
       setPassword('')
     } else {
       alert('Senha incorreta!')
@@ -328,6 +341,7 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
             <button
               onClick={() => {
                 setIsAuthenticated(false)
+                localStorage.removeItem('semijoias_admin_auth')
                 onLogout()
               }}
               className="flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
