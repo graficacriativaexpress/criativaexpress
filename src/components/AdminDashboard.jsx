@@ -140,13 +140,25 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
 
   const handleAddProduct = (e) => {
     e.preventDefault()
+    
+    if (!formData.name || !formData.price || !formData.description) {
+      alert('Preencha todos os campos obrigatórios!')
+      return
+    }
+
+    let updatedProducts
+    
     if (editingId) {
-      setProducts(products.map(p => 
+      updatedProducts = products.map(p => 
         p.id === editingId 
-          ? { ...p, ...formData, specs: formData.specs.split(',').map(s => s.trim()) }
+          ? { 
+              ...p, 
+              ...formData, 
+              price: parseFloat(formData.price),
+              specs: formData.specs.split(',').map(s => s.trim()) 
+            }
           : p
-      ))
-      setEditingId(null)
+      )
     } else {
       const newProduct = {
         id: Math.max(...products.map(p => p.id), 0) + 1,
@@ -154,10 +166,13 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
         price: parseFloat(formData.price),
         specs: formData.specs.split(',').map(s => s.trim())
       }
-      setProducts([...products, newProduct])
+      updatedProducts = [...products, newProduct]
     }
-    onProductsUpdate([...products])
+    
+    setProducts(updatedProducts)
+    onProductsUpdate(updatedProducts)
     resetForm()
+    alert('Produto salvo com sucesso!')
   }
 
   const handleEdit = (product) => {

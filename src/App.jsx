@@ -84,7 +84,11 @@ function App() {
 
   // Salvar config no localStorage quando mudar
   useEffect(() => {
-    localStorage.setItem('semijoias_config', JSON.stringify(config))
+    try {
+      localStorage.setItem('semijoias_config', JSON.stringify(config))
+    } catch (e) {
+      console.error('Erro ao salvar config:', e)
+    }
   }, [config])
 
   // Dados de produtos
@@ -441,7 +445,11 @@ function App() {
 
   // Salvar produtos no localStorage quando mudar
   useEffect(() => {
-    localStorage.setItem('semijoias_products', JSON.stringify(products))
+    try {
+      localStorage.setItem('semijoias_products', JSON.stringify(products))
+    } catch (e) {
+      console.error('Erro ao salvar produtos:', e)
+    }
   }, [products])
 
   const handleProductsUpdate = (updatedProducts) => {
