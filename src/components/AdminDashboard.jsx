@@ -1,4 +1,4 @@
-fimport { useState } from 'react'
+import { useState } from 'react'
 import { Edit2, Trash2, Plus, LogOut, Eye, EyeOff, Upload, Loader, Image as ImageIcon } from 'lucide-react'
 
 
