@@ -5,7 +5,7 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const [products, setProducts] = useState(initialProducts)
+  const [products, setProducts] = useState(initialProducts || [])
   const [editingId, setEditingId] = useState(null)
   const [formData, setFormData] = useState({
     name: '',
@@ -20,16 +20,8 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
   const [whatsappNumber, setWhatsappNumber] = useState('5561993629392')
   const [infinityPayHandle, setInfinityPayHandle] = useState('capitalqueen')
   const [localConfig, setLocalConfig] = useState(config)
-  const [uploadingImage, setUploadingImage] = useState(false)
-  const [uploadingSlide, setUploadingSlide] = useState(false)
-  const [apiKey, setApiKey] = useState('')
-  const [generatingDescription, setGeneratingDescription] = useState(false)
   const [adminPassword, setAdminPassword] = useState('001394aR@')
-  const [editingPassword, setEditingPassword] = useState(false)
-  const [newPassword, setNewPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
 
-  // Verificar se já está autenticado ao carregar
   useEffect(() => {
     try {
       const isAuth = localStorage.getItem('semijoias_admin_auth')
@@ -110,6 +102,16 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
         <div className="bg-white rounded-xl shadow-lg p-6">
           <p className="text-gray-600 text-center py-8 text-xl font-semibold">Painel Carregado com Sucesso!</p>
           <p className="text-gray-500 text-center">Você já pode gerenciar seus produtos e configurações.</p>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="p-4 border rounded-lg">
+              <h3 className="font-bold mb-2">WhatsApp</h3>
+              <p>{whatsappNumber}</p>
+            </div>
+            <div className="p-4 border rounded-lg">
+              <h3 className="font-bold mb-2">InfinityPay</h3>
+              <p>{infinityPayHandle}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
