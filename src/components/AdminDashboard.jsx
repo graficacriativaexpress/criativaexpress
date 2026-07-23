@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Edit2, Trash2, Plus, LogOut, Eye, EyeOff, Upload, Loader, Image as ImageIcon } from 'lucide-react'
+
+
 
 
 export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpdate, initialProducts, config }) {
@@ -31,6 +33,8 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
   const [confirmPassword, setConfirmPassword] = useState('')
 
 
+
+
   // Verificar se já está autenticado ao carregar
   useEffect(() => {
     try {
@@ -42,6 +46,8 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
       console.error('Erro ao verificar autenticação:', e)
     }
   }, [])
+
+
 
 
   const handleLogin = (e) => {
@@ -56,9 +62,13 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
   }
 
 
+
+
   const handleImageUpload = async (e) => {
     const file = e.target.files?.[0]
     if (!file) return
+
+
 
 
     setUploadingImage(true)
@@ -67,10 +77,3 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
       formDataUpload.append('image', file)
 
 
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formDataUpload
-      })
-
-
-      const data = await response.json()
