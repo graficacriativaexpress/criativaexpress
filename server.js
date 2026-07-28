@@ -17,11 +17,13 @@ const PORT = process.env.PORT || 3000
 
 // Middleware
 app.use(cors())
-app.use(express.json())
+app.use(express.json({ limit: '50mb' }))
+app.use(express.urlencoded({ limit: '50mb' }))
 
 // Configurar caminhos de dados
 const dataDir = path.join(__dirname, 'data')
 const productsFile = path.join(dataDir, 'products.json')
+const configFile = path.join(dataDir, 'config.json')
 const uploadDir = path.join(__dirname, 'public', 'uploads')
 
 // Garantir que as pastas existam
@@ -31,6 +33,29 @@ if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true })
 // Inicializar arquivo de produtos se não existir
 if (!fs.existsSync(productsFile)) {
     fs.writeFileSync(productsFile, JSON.stringify({ 'Cartão de Visita': [], 'Tags Personalizadas': [], 'DTF': [] }, null, 2))
+}
+
+// Inicializar arquivo de configuração se não existir
+if (!fs.existsSync(configFile)) {
+    const defaultConfig = {
+        whatsappNumber: '5561993629392',
+        infinityPayHandle: 'capitalqueen',
+        categories: [
+            { id: 'cartao', name: 'Cartão de Visita', icon: '🎨', description: 'Cartões premium com acabamentos especiais' },
+            { id: 'tags', name: 'Tags Personalizadas', icon: '🏷️', description: 'Tags para semijoias com design exclusivo' },
+            { id: 'dtf', name: 'DTF', icon: '👕', description: 'Transferências DTF de alta qualidade' }
+        ],
+        slides: [
+            { id: 1, title: 'Bem-vindo ao Criativa Express', subtitle: 'Semijoias e Acessórios Premium', gradient: 'from-purple-600 to-pink-600' },
+            { id: 2, title: 'Qualidade Premium', subtitle: 'Produtos de excelência para seu negócio', gradient: 'from-blue-600 to-purple-600' }
+        ],
+        features: [
+            { id: 1, icon: '⚡', title: 'Rápido', description: 'Entrega ágil' },
+            { id: 2, icon: '💎', title: 'Premium', description: 'Qualidade garantida' },
+            { id: 3, icon: '🎯', title: 'Personalizado', description: 'Seu design' }
+        ]
+    }
+    fs.writeFileSync(configFile, JSON.stringify(defaultConfig, null, 2))
 }
 
 // Configurar multer para upload de imagens
@@ -81,6 +106,27 @@ app.post('/api/products', (req, res) => {
     }
 })
 
+// Obter configurações
+app.get('/api/config', (req, res) => {
+    try {
+        const data = JSON.parse(fs.readFileSync(configFile, 'utf-8'))
+        res.json(data)
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao ler configurações' })
+    }
+})
+
+// Salvar configurações
+app.post('/api/config', (req, res) => {
+    try {
+        const newConfig = req.body
+        fs.writeFileSync(configFile, JSON.stringify(newConfig, null, 2))
+        res.json({ success: true, message: 'Configurações salvas com sucesso' })
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao salvar configurações' })
+    }
+})
+
 // Upload de imagem
 app.post('/api/upload', upload.single('image'), (req, res) => {
     if (!req.file) return res.status(400).json({ error: 'Nenhuma imagem enviada' })
@@ -108,6 +154,11 @@ app.post('/api/generate-description', async (req, res) => {
   } catch (error) {
     res.status(500).json({ success: false, message: 'Erro ao gerar descrição' })
   }
+})
+
+// Health check
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() })
 })
 
 // SPA Fallback
