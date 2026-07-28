@@ -136,35 +136,27 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
       return
     }
 
-    // Validar tamanho (máx 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      showError('Arquivo muito grande (máximo 5MB)')
+    // Validar tamanho (máx 2MB para Base64)
+    if (file.size > 2 * 1024 * 1024) {
+      showError('Arquivo muito grande (máximo 2MB)')
       return
     }
 
     setUploadingImage(true)
-    const formDataUpload = new FormData()
-    formDataUpload.append('image', file)
 
     try {
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        body: formDataUpload
-      })
-      
-      if (!res.ok) {
-        throw new Error('Erro no upload')
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        const base64String = event.target.result
+        setFormData({ ...formData, image: base64String })
+        showSuccess('Imagem carregada com sucesso!')
       }
-      
-      const data = await res.json()
-      if (data.url) {
-        setFormData({ ...formData, image: data.url })
-        showSuccess('Imagem enviada com sucesso!')
-      } else if (data.error) {
-        showError(data.error)
+      reader.onerror = () => {
+        showError('Erro ao ler a imagem')
       }
+      reader.readAsDataURL(file)
     } catch (e) {
-      showError('Erro ao fazer upload da imagem. Tente novamente.')
+      showError('Erro ao processar a imagem')
       console.error(e)
     }
     setUploadingImage(false)
@@ -226,15 +218,18 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
       name: product.name,
       category: category,
       description: product.description,
-      price: product.price,
+      price: product.price.toString(),
       specs: product.specs ? product.specs.join(', ') : '',
       featured: product.featured || false,
       image: product.image
     })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const handleUpdateProduct = (e) => {
     e.preventDefault()
+    if (!editingId || !editingCategory) return
+
     const updatedProducts = { ...products }
     const productIndex = updatedProducts[editingCategory].findIndex(p => p.id === editingId)
     
