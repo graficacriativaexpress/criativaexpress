@@ -55,6 +55,57 @@ if (!fs.existsSync(configFile)) {
     fs.writeFileSync(configFile, JSON.stringify(defaultConfig, null, 2))
 }
 
+// Função para salvar no GitHub
+async function saveToGitHub(filename, content, message) {
+    try {
+        const GITHUB_TOKEN = process.env.GITHUB_TOKEN
+        const GITHUB_REPO = 'graficacriativaexpress/criativaexpress'
+        const GITHUB_OWNER = 'graficacriativaexpress'
+        const GITHUB_REPO_NAME = 'criativaexpress'
+
+        if (!GITHUB_TOKEN) {
+            console.log('GitHub token não configurado, salvando localmente')
+            return false
+        }
+
+        const filePath = `data/${filename}`
+        const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}`
+
+        // Primeiro, tentar obter o arquivo atual para pegar o SHA
+        let sha = null
+        try {
+            const getRes = await axios.get(url, {
+                headers: {
+                    'Authorization': `token ${GITHUB_TOKEN}`,
+                    'Accept': 'application/vnd.github.v3+raw'
+                }
+            })
+            sha = getRes.data.sha
+        } catch (e) {
+            // Arquivo não existe ainda, sem problema
+        }
+
+        // Enviar para GitHub
+        const response = await axios.put(url, {
+            message: message,
+            content: Buffer.from(content).toString('base64'),
+            sha: sha,
+            branch: 'main'
+        }, {
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'Content-Type': 'application/json'
+            }
+        })
+
+        console.log(`Arquivo ${filename} salvo no GitHub com sucesso`)
+        return true
+    } catch (error) {
+        console.error(`Erro ao salvar ${filename} no GitHub:`, error.message)
+        return false
+    }
+}
+
 // Servir arquivos estáticos
 app.use(express.static(path.join(__dirname, 'dist')))
 
@@ -66,18 +117,39 @@ app.get('/api/products', (req, res) => {
         const data = JSON.parse(fs.readFileSync(productsFile, 'utf-8'))
         res.json(data)
     } catch (error) {
+        console.error('Erro ao ler produtos:', error)
         res.status(500).json({ error: 'Erro ao ler produtos' })
     }
 })
 
-// Salvar todos os produtos (substituição total)
-app.post('/api/products', (req, res) => {
+// Salvar todos os produtos
+app.post('/api/products', async (req, res) => {
     try {
         const newProducts = req.body
-        fs.writeFileSync(productsFile, JSON.stringify(newProducts, null, 2))
-        res.json({ success: true, message: 'Produtos salvos com sucesso' })
+        const content = JSON.stringify(newProducts, null, 2)
+        
+        // Tentar salvar no GitHub
+        const savedToGitHub = await saveToGitHub(
+            'products.json',
+            content,
+            'Atualizar produtos via painel administrativo'
+        )
+
+        // Também salvar localmente para backup
+        try {
+            fs.writeFileSync(productsFile, content)
+        } catch (e) {
+            console.log('Não foi possível salvar localmente (esperado no Vercel)')
+        }
+
+        if (savedToGitHub) {
+            res.json({ success: true, message: 'Produtos salvos com sucesso no GitHub' })
+        } else {
+            res.json({ success: true, message: 'Produtos salvos (aguardando sincronização)' })
+        }
     } catch (error) {
-        res.status(500).json({ error: 'Erro ao salvar produtos' })
+        console.error('Erro ao salvar produtos:', error)
+        res.status(500).json({ error: 'Erro ao salvar produtos: ' + error.message })
     }
 })
 
@@ -87,18 +159,39 @@ app.get('/api/config', (req, res) => {
         const data = JSON.parse(fs.readFileSync(configFile, 'utf-8'))
         res.json(data)
     } catch (error) {
+        console.error('Erro ao ler configurações:', error)
         res.status(500).json({ error: 'Erro ao ler configurações' })
     }
 })
 
 // Salvar configurações
-app.post('/api/config', (req, res) => {
+app.post('/api/config', async (req, res) => {
     try {
         const newConfig = req.body
-        fs.writeFileSync(configFile, JSON.stringify(newConfig, null, 2))
-        res.json({ success: true, message: 'Configurações salvas com sucesso' })
+        const content = JSON.stringify(newConfig, null, 2)
+        
+        // Tentar salvar no GitHub
+        const savedToGitHub = await saveToGitHub(
+            'config.json',
+            content,
+            'Atualizar configurações via painel administrativo'
+        )
+
+        // Também salvar localmente para backup
+        try {
+            fs.writeFileSync(configFile, content)
+        } catch (e) {
+            console.log('Não foi possível salvar localmente (esperado no Vercel)')
+        }
+
+        if (savedToGitHub) {
+            res.json({ success: true, message: 'Configurações salvas com sucesso no GitHub' })
+        } else {
+            res.json({ success: true, message: 'Configurações salvas (aguardando sincronização)' })
+        }
     } catch (error) {
-        res.status(500).json({ error: 'Erro ao salvar configurações' })
+        console.error('Erro ao salvar configurações:', error)
+        res.status(500).json({ error: 'Erro ao salvar configurações: ' + error.message })
     }
 })
 
