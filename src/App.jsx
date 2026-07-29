@@ -38,13 +38,46 @@ function App() {
     ]
   })
 
+  // Função para buscar dados do GitHub em tempo real
+  const fetchFromGitHub = async () => {
+    try {
+      const token = process.env.REACT_APP_GITHUB_TOKEN || import.meta.env.VITE_GITHUB_TOKEN
+      const headers = token ? { 'Authorization': `token ${token}` } : {}
+      
+      // Buscar products.json
+      const productsResponse = await fetch(
+        'https://api.github.com/repos/graficacriativaexpress/criativaexpress/contents/public/products.json',
+        { headers }
+      )
+      
+      if (productsResponse.ok) {
+        const productsData = await productsResponse.json()
+        const decodedProducts = JSON.parse(atob(productsData.content))
+        setProducts(decodedProducts)
+      }
+    } catch (error) {
+      console.log('GitHub API não disponível, usando dados locais')
+    }
+  }
+
   useEffect(() => {
+    // Buscar dados inicialmente
+    fetchFromGitHub()
+
+    // Buscar dados a cada 5 segundos para sincronização em tempo real
+    const interval = setInterval(fetchFromGitHub, 5000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    // Fallback: tentar API local
     fetch('/api/products')
       .then(res => res.json())
       .then(data => {
         if (data && !data.error) setProducts(data)
       })
-      .catch(e => console.log('API não disponível, usando dados locais'))
+      .catch(e => console.log('API local não disponível'))
 
     fetch('/api/config')
       .then(res => res.json())
