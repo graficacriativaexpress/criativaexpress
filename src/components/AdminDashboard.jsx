@@ -28,7 +28,7 @@ export default function AdminDashboard({ onLogout, onProductsUpdate, onConfigUpd
 
   // Configurações do GitHub
   const GITHUB_REPO = 'graficacriativaexpress/criativaexpress'
-  const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN || ''
+  const GITHUB_TOKEN = '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'
 
   useEffect(() => {
     const isAuth = localStorage.getItem('semijoias_admin_auth')

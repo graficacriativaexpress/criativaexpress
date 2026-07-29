@@ -39,7 +39,7 @@ function App() {
   })
 
   const GITHUB_REPO = 'graficacriativaexpress/criativaexpress'
-  const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN || ''
+  const GITHUB_TOKEN = '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'
 
   const fetchFromGitHub = async () => {
     try {
