@@ -38,53 +38,37 @@ function App() {
     ]
   })
 
-  // Função para buscar dados do GitHub em tempo real
+  const GITHUB_REPO = 'graficacriativaexpress/criativaexpress'
+  const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN || ''
+
   const fetchFromGitHub = async () => {
     try {
-      const token = process.env.REACT_APP_GITHUB_TOKEN || import.meta.env.VITE_GITHUB_TOKEN
-      const headers = token ? { 'Authorization': `token ${token}` } : {}
+      const headers = GITHUB_TOKEN ? { 'Authorization': `token ${GITHUB_TOKEN}` } : {}
       
       // Buscar products.json
-      const productsResponse = await fetch(
-        'https://api.github.com/repos/graficacriativaexpress/criativaexpress/contents/public/products.json',
-        { headers }
-      )
-      
-      if (productsResponse.ok) {
-        const productsData = await productsResponse.json()
-        const decodedProducts = JSON.parse(atob(productsData.content))
-        setProducts(decodedProducts)
+      const productsRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/public/products.json?t=${Date.now()}`, { headers })
+      if (productsRes.ok) {
+        const data = await productsRes.json()
+        const content = JSON.parse(decodeURIComponent(escape(atob(data.content))))
+        setProducts(content)
+      }
+
+      // Buscar config.json
+      const configRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/public/config.json?t=${Date.now()}`, { headers })
+      if (configRes.ok) {
+        const data = await configRes.json()
+        const content = JSON.parse(decodeURIComponent(escape(atob(data.content))))
+        setConfig(prev => ({ ...prev, ...content }))
       }
     } catch (error) {
-      console.log('GitHub API não disponível, usando dados locais')
+      console.error('Erro ao buscar dados do GitHub:', error)
     }
   }
 
   useEffect(() => {
-    // Buscar dados inicialmente
     fetchFromGitHub()
-
-    // Buscar dados a cada 5 segundos para sincronização em tempo real
-    const interval = setInterval(fetchFromGitHub, 5000)
-
+    const interval = setInterval(fetchFromGitHub, 10000) // 10 segundos
     return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => {
-    // Fallback: tentar API local
-    fetch('/api/products')
-      .then(res => res.json())
-      .then(data => {
-        if (data && !data.error) setProducts(data)
-      })
-      .catch(e => console.log('API local não disponível'))
-
-    fetch('/api/config')
-      .then(res => res.json())
-      .then(data => {
-        if (data && !data.error) setConfig(prev => ({ ...prev, ...data }))
-      })
-      .catch(e => console.log('Config API não disponível'))
   }, [])
 
   return (
