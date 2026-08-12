@@ -24,6 +24,6 @@
 - [x] Otimizar o enquadramento da logo oficial para leitura adequada nos pontos de marca da vitrine.
 - [x] Cadastrar e organizar os kits reais com fotos, composição descrita, quantidade e preço.
 - [x] Revisar a vitrine de kits e o painel administrativo após o cadastro.
-- [ ] Salvar e entregar a versão atualizada com logo e kits.
+- [x] Salvar e entregar a versão atualizada com logo e kits.
 - [x] Registrar a composição estruturada de tags e pingentes nos itens de cada kit, usando as quantidades reais fornecidas.
 - [x] Validar no painel administrativo que os kits cadastrados, as fotos e as opções de edição estão disponíveis.
