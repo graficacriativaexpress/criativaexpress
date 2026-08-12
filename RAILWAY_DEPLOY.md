@@ -20,7 +20,7 @@
 | `UPLOADS_DIR` | `/data/uploads` |
 | `RAILWAY_LEGACY_IMAGE_ORIGIN` | `https://3000-i62srvd2zg8wd4nncf93a-f7ce7945.us2.manus.computer` |
 
-Depois de criar o banco, execute uma única vez `pnpm railway:seed` com as mesmas variáveis. A semente restaura os 24 kits, as composições e as configurações. As imagens existentes continuam referenciando o armazenamento legado do Manus; novas imagens enviadas pelo painel vão para o volume do Railway.
+Depois de criar o banco, execute uma única vez `pnpm railway:seed` com as mesmas variáveis. A semente restaura os 24 kits, as composições e as configurações, além de copiar a logo e as fotos existentes para o volume Railway. Assim, os ativos são servidos por `/uploads` e não dependem do armazenamento legado do Manus. Novas imagens enviadas pelo painel também são gravadas no volume do Railway.
 
 ## Limite do plano gratuito
 

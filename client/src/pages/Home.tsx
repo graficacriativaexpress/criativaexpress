@@ -6,6 +6,10 @@ import { Button } from "@/components/ui/button";
 import { trpc } from "@/lib/trpc";
 import { catalogCategories } from "@shared/catalog";
 
+const logoUrl = import.meta.env.VITE_AUTH_MODE === "local"
+  ? "/uploads/seed/logo-logo-criativa-express-cropped_7b98716a.png"
+  : "/manus-storage/logo-criativa-express-cropped_7b98716a.png";
+
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState<string>("todos");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -21,7 +25,7 @@ export default function Home() {
       <header className="sticky top-0 z-40 border-b border-wine/15 bg-paper/92 backdrop-blur-xl">
         <div className="container flex h-[68px] items-center justify-between">
           <a href="/" className="group flex items-center" aria-label="Criativa Express — início">
-            <img src="/manus-storage/logo-criativa-express-cropped_7b98716a.png" alt="Criativa Express" className="h-12 w-32 object-contain object-center" />
+            <img src={logoUrl} alt="Criativa Express" className="h-12 w-32 object-contain object-center" />
           </a>
           <nav className="hidden items-center gap-6 text-sm font-semibold text-ink/70 md:flex">
             <a href="#catalogo" className="hover:text-wine">Catálogo</a>
@@ -47,7 +51,7 @@ export default function Home() {
             <div className="relative mx-auto h-[330px] w-full max-w-sm sm:h-[380px]">
               <div className="absolute inset-x-8 top-5 h-[260px] rotate-[-6deg] rounded-[2rem] border border-white/70 bg-rose shadow-2xl shadow-wine/20" />
               <div className="absolute inset-x-4 bottom-2 h-[280px] rotate-[5deg] rounded-[2rem] border border-white/70 bg-gold shadow-xl" />
-              <div className="absolute inset-x-0 bottom-7 flex h-[295px] flex-col justify-between rounded-[2rem] border-t-4 border-sky bg-[#fffdfa] p-7 soft-shadow"><img src="/manus-storage/logo-criativa-express-cropped_7b98716a.png" alt="Criativa Express" className="h-16 w-40 object-contain object-left" /><div><span className="block text-[10px] font-bold uppercase tracking-[.2em] text-gold">feito para sua marca</span><div className="mt-3 h-px w-full bg-wine/15" /><span className="mt-3 block font-display text-2xl text-ink">Sua identidade<br />em cada detalhe.</span></div></div>
+              <div className="absolute inset-x-0 bottom-7 flex h-[295px] flex-col justify-between rounded-[2rem] border-t-4 border-sky bg-[#fffdfa] p-7 soft-shadow"><img src={logoUrl} alt="Criativa Express" className="h-16 w-40 object-contain object-left" /><div><span className="block text-[10px] font-bold uppercase tracking-[.2em] text-gold">feito para sua marca</span><div className="mt-3 h-px w-full bg-wine/15" /><span className="mt-3 block font-display text-2xl text-ink">Sua identidade<br />em cada detalhe.</span></div></div>
             </div>
           </div>
         </section>
@@ -60,7 +64,7 @@ export default function Home() {
 
         <section id="como-pedir" className="border-y border-wine/15 bg-sand"><div className="container grid gap-7 py-14 sm:py-18 md:grid-cols-3"><div><p className="text-xs font-bold uppercase tracking-[.18em] text-gold">Atendimento simples</p><h2 className="mt-2 font-display text-4xl leading-none">Escolha. <em className="font-normal text-wine">Peça.</em> Encante.</h2></div><div className="rounded-2xl border-t-4 border-sky bg-white/75 p-5"><span className="font-display text-3xl text-wine">01</span><p className="mt-5 font-semibold">Navegue pelo catálogo</p><p className="mt-1 text-sm leading-relaxed text-ink/65">Veja detalhes, materiais e valores de cada peça.</p></div><div className="rounded-2xl border-t-4 border-gold bg-white/75 p-5"><span className="font-display text-3xl text-wine">02</span><p className="mt-5 font-semibold">Envie pelo WhatsApp</p><p className="mt-1 text-sm leading-relaxed text-ink/65">O pedido já sai organizado com o produto e o valor escolhidos.</p></div></div></section>
       </main>
-      <footer className="bg-ink text-[#f8f4ee]"><div className="container flex flex-col gap-5 py-9 sm:flex-row sm:items-end sm:justify-between"><div><img src="/manus-storage/logo-criativa-express-cropped_7b98716a.png" alt="Criativa Express" className="h-14 w-36 object-contain object-left brightness-0 invert" /><p className="mt-1 text-xs tracking-wide text-white/55">Produtos que deixam marcas.</p></div><div className="flex items-center gap-3"><span className="text-xs text-white/55">Precisa de algo personalizado?</span><WhatsAppOrderButton compact productName="Atendimento personalizado" price="0" isKit={false} companyName={companyName} whatsappNumber={settings?.whatsappNumber} whatsappGreeting="Olá! Quero conversar sobre um projeto personalizado." /></div></div></footer>
+      <footer className="bg-ink text-[#f8f4ee]"><div className="container flex flex-col gap-5 py-9 sm:flex-row sm:items-end sm:justify-between"><div><img src={logoUrl} alt="Criativa Express" className="h-14 w-36 object-contain object-left brightness-0 invert" /><p className="mt-1 text-xs tracking-wide text-white/55">Produtos que deixam marcas.</p></div><div className="flex items-center gap-3"><span className="text-xs text-white/55">Precisa de algo personalizado?</span><WhatsAppOrderButton compact productName="Atendimento personalizado" price="0" isKit={false} companyName={companyName} whatsappNumber={settings?.whatsappNumber} whatsappGreeting="Olá! Quero conversar sobre um projeto personalizado." /></div></div></footer>
     </div>
   );
 }

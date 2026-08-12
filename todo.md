@@ -53,3 +53,4 @@
 - [ ] Criar os serviços Railway de aplicação e MySQL, configurar o volume de fotos, variáveis de produção e a semente do catálogo antes do deploy de teste.
 - [ ] Após validar a nova loja no endereço temporário do Railway, migrar o domínio já configurado no Vercel atualizando apenas os apontamentos DNS necessários.
 - [ ] Corrigir a conversão de datas ISO na semente do Railway, carregar os 24 kits reais no MySQL e validar o catálogo no endereço temporário.
+- [ ] Copiar logo e fotos existentes para o volume Railway e atualizar a semente para servir imagens persistentes, sem depender dos endereços temporários do Manus.
