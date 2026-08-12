@@ -1,5 +1,5 @@
-import { ArrowLeft, ChevronLeft, ChevronRight, PackageCheck } from "lucide-react";
-import { useState } from "react";
+import { ArrowLeft, BadgePercent, ChevronLeft, ChevronRight, CreditCard, PackageCheck } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Link, useRoute } from "wouter";
 import { CatalogVisual } from "@/components/CatalogVisual";
 import WhatsAppOrderButton from "@/components/WhatsAppOrderButton";
@@ -14,7 +14,12 @@ export default function ProductDetail() {
     { slug: params?.slug ?? "" },
     { enabled: Boolean(params?.slug) }
   );
+  const { data: catalogProducts = [] } = trpc.catalog.list.useQuery();
   const [selected, setSelected] = useState(0);
+
+  useEffect(() => {
+    setSelected(0);
+  }, [params?.slug]);
 
   if (isLoading) {
     return <div className="min-h-screen bg-paper"><div className="container py-10"><div className="h-8 w-32 animate-pulse rounded bg-sand" /><div className="mt-10 grid gap-8 md:grid-cols-2"><div className="aspect-square animate-pulse rounded-3xl bg-sand" /><div className="h-96 animate-pulse rounded-3xl bg-sand" /></div></div></div>;
@@ -28,6 +33,9 @@ export default function ProductDetail() {
 
   const image = product.images[selected] ?? product.images[0];
   const isKit = product.type === "kit";
+  const currentProductIndex = catalogProducts.findIndex(item => item.slug === product.slug);
+  const previousProduct = currentProductIndex > 0 ? catalogProducts[currentProductIndex - 1] : undefined;
+  const nextProduct = currentProductIndex >= 0 && currentProductIndex < catalogProducts.length - 1 ? catalogProducts[currentProductIndex + 1] : undefined;
 
   return (
     <div className="min-h-screen bg-paper">
@@ -50,6 +58,7 @@ export default function ProductDetail() {
             <p className="text-xs font-bold uppercase tracking-[.18em] text-gold">{categoryLabel(product.category)}</p>
             <h1 className="mt-3 font-display text-4xl leading-[1.03] tracking-[-.035em] sm:text-5xl">{product.name}</h1>
             <p className="mt-5 text-xl font-bold text-wine">{formatCurrency(product.price)}</p>
+            <div className="mt-5 flex flex-wrap gap-2"><span className="inline-flex items-center gap-1.5 rounded-full border border-sky/30 bg-sky/10 px-3 py-1.5 text-xs font-bold text-ink"><CreditCard className="h-3.5 w-3.5 text-sky" />Até 3x sem juros</span><span className="inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-gold/10 px-3 py-1.5 text-xs font-bold text-ink"><BadgePercent className="h-3.5 w-3.5 text-gold" />5% de desconto no PIX à vista</span></div>
             <div className="my-7 h-px bg-[#e2d5c6]" />
             <p className="whitespace-pre-wrap text-base leading-relaxed text-ink/72">{product.description}</p>
             {isKit && product.kitItems.length > 0 && <div className="mt-7 rounded-2xl border border-[#e7d9c9] bg-white/70 p-5"><div className="flex items-center gap-2 font-semibold"><PackageCheck className="h-5 w-5 text-wine" />Composição do kit</div><ul className="mt-4 space-y-3">{product.kitItems.map(item => { const componentTotal = Number(item.itemPrice) * item.quantity; return <li key={item.id} className="flex items-center justify-between gap-3 text-sm"><span className="text-ink/75">{item.quantity.toLocaleString("pt-BR")}× {item.itemName}</span><span className="font-semibold text-ink">{componentTotal > 0 ? formatCurrency(componentTotal) : "Incluso"}</span></li>; })}</ul></div>}
@@ -57,6 +66,7 @@ export default function ProductDetail() {
             <p className="mt-3 text-xs leading-relaxed text-ink/50">Ao clicar, você será direcionado ao WhatsApp com uma mensagem de pedido pronta.</p>
           </section>
         </div>
+        {(previousProduct || nextProduct) && <nav className="mt-10 grid gap-3 border-t border-wine/15 pt-7 sm:grid-cols-2" aria-label="Navegação entre produtos">{previousProduct ? <Link href={`/produto/${previousProduct.slug}`} className="group flex min-w-0 items-center gap-3 rounded-2xl border border-wine/20 bg-white/70 p-4 transition hover:border-sky/70 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky"><ChevronLeft className="h-5 w-5 shrink-0 text-wine transition-transform group-hover:-translate-x-0.5" /><span className="min-w-0"><span className="block text-[10px] font-bold uppercase tracking-[.14em] text-ink/50">Produto anterior</span><span className="mt-1 block truncate font-semibold text-ink">{previousProduct.name}</span></span></Link> : <div className="hidden sm:block" />}{nextProduct ? <Link href={`/produto/${nextProduct.slug}`} className="group flex min-w-0 items-center justify-end gap-3 rounded-2xl border border-wine/20 bg-white/70 p-4 text-right transition hover:border-sky/70 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky"><span className="min-w-0"><span className="block text-[10px] font-bold uppercase tracking-[.14em] text-ink/50">Próximo produto</span><span className="mt-1 block truncate font-semibold text-ink">{nextProduct.name}</span></span><ChevronRight className="h-5 w-5 shrink-0 text-wine transition-transform group-hover:translate-x-0.5" /></Link> : <div className="hidden sm:block" />}</nav>}
       </main>
     </div>
   );

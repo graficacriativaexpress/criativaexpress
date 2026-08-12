@@ -1,4 +1,4 @@
-import { Menu, Search, Sparkles, X } from "lucide-react";
+import { BadgePercent, CreditCard, Menu, Search, Sparkles, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import ProductCard from "@/components/ProductCard";
 import WhatsAppOrderButton from "@/components/WhatsAppOrderButton";
@@ -45,6 +45,7 @@ export default function Home() {
               <h1 className="font-display text-[2.9rem] leading-[.98] tracking-[-.045em] text-ink sm:text-6xl">Peças especiais para <em className="font-normal text-wine">marcas inesquecíveis.</em></h1>
               <p className="mt-6 max-w-xl text-base leading-relaxed text-ink/68 sm:text-lg">Tags, DTF, cartões de visita e kits feitos para transformar cada entrega em uma experiência de marca.</p>
               <div className="mt-8 flex flex-wrap gap-3"><a href="#catalogo" className="rounded-full bg-wine px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-wine/20 transition active:scale-[.97] hover:bg-rose focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Explorar catálogo</a></div>
+              <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold text-ink/72"><span className="inline-flex items-center gap-1.5"><CreditCard className="h-3.5 w-3.5 text-sky" />Até 3x sem juros</span><span className="inline-flex items-center gap-1.5"><BadgePercent className="h-3.5 w-3.5 text-gold" />5% de desconto no PIX à vista</span></div>
             </div>
             <div className="relative mx-auto h-[330px] w-full max-w-sm sm:h-[380px]">
               <div className="absolute inset-x-8 top-5 h-[260px] rotate-[-6deg] rounded-[2rem] border border-white/70 bg-rose shadow-2xl shadow-wine/20" />
