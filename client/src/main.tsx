@@ -18,6 +18,11 @@ const redirectToLoginIfUnauthorized = (error: unknown) => {
 
   if (!isUnauthorized) return;
 
+  if (import.meta.env.VITE_AUTH_MODE === "local") {
+    if (window.location.pathname !== "/admin/login") window.location.assign("/admin/login");
+    return;
+  }
+
   startLogin();
 };
 

@@ -1,0 +1,746 @@
+{
+  "exportedAt": "2026-08-12T21:15:39.640Z",
+  "products": [
+    {
+      "id": 1,
+      "name": "Kit 2.000 Tags Brincos",
+      "slug": "kit-2000-tags-brincos",
+      "description": "Kit com 2.000 tags personalizadas para brincos, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. A composição reúne os formatos e medidas apresentados na imagem de referência. Personalizamos qualquer modelo conforme sua marca.",
+      "category": "kits",
+      "type": "kit",
+      "price": "249.90",
+      "isActive": 1,
+      "isFeatured": 1,
+      "sortOrder": 1,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 2,
+      "name": "Kit 2.000 Tags Trio",
+      "slug": "kit-2000-tags-trio",
+      "description": "Kit com 2.000 tags personalizadas em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. A composição traz três formatos de tags para uma apresentação versátil da sua marca.",
+      "category": "kits",
+      "type": "kit",
+      "price": "249.90",
+      "isActive": 1,
+      "isFeatured": 1,
+      "sortOrder": 2,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 3,
+      "name": "Kit 2.000 Tags de Brincos",
+      "slug": "kit-2000-tags-brincos-classico",
+      "description": "Kit com 2.000 tags personalizadas para brincos, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. Os formatos e medidas seguem a composição visual apresentada na imagem.",
+      "category": "kits",
+      "type": "kit",
+      "price": "249.90",
+      "isActive": 1,
+      "isFeatured": 0,
+      "sortOrder": 3,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 4,
+      "name": "Kit 2.000 Tags Infantil",
+      "slug": "kit-2000-tags-infantil",
+      "description": "Kit com 2.000 tags personalizadas em composição infantil, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. Inclui os formatos apresentados na arte de referência.",
+      "category": "kits",
+      "type": "kit",
+      "price": "269.90",
+      "isActive": 1,
+      "isFeatured": 1,
+      "sortOrder": 4,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 5,
+      "name": "Kit Iniciante 1 — 2.000 Tags",
+      "slug": "kit-iniciante-1-2000-tags",
+      "description": "Kit inicial com 2.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. A composição combina os formatos ilustrados na imagem para começar sua marca com variedade.",
+      "category": "kits",
+      "type": "kit",
+      "price": "309.90",
+      "isActive": 1,
+      "isFeatured": 1,
+      "sortOrder": 5,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 6,
+      "name": "Kit Iniciante 2 — 3.000 Tags",
+      "slug": "kit-iniciante-2-3000-tags",
+      "description": "Kit inicial com 3.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. A composição segue os modelos e medidas apresentados na arte.",
+      "category": "kits",
+      "type": "kit",
+      "price": "389.90",
+      "isActive": 1,
+      "isFeatured": 1,
+      "sortOrder": 6,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 7,
+      "name": "Kit Iniciante 3 — 5.000 Tags",
+      "slug": "kit-iniciante-3-5000-tags",
+      "description": "Kit inicial com 5.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. A composição reúne os formatos exibidos na imagem de referência.",
+      "category": "kits",
+      "type": "kit",
+      "price": "479.90",
+      "isActive": 1,
+      "isFeatured": 1,
+      "sortOrder": 7,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 8,
+      "name": "Kit Eu Desejo — 1.000 Tags + 4 Pingentes",
+      "slug": "kit-eu-desejo-1000-tags-4-pingentes",
+      "description": "Kit com 1.000 tags personalizadas e 4 pingentes personalizados, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. A composição e as medidas seguem a arte apresentada.",
+      "category": "kits",
+      "type": "kit",
+      "price": "389.90",
+      "isActive": 1,
+      "isFeatured": 1,
+      "sortOrder": 8,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 9,
+      "name": "Kit 4.000 Tags Infantil",
+      "slug": "kit-4000-tags-infantil",
+      "description": "Kit com 4.000 tags personalizadas em composição infantil, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. Inclui os formatos apresentados na imagem.",
+      "category": "kits",
+      "type": "kit",
+      "price": "389.90",
+      "isActive": 1,
+      "isFeatured": 1,
+      "sortOrder": 9,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 10,
+      "name": "Kit 6.000 Tags — Mix Clássico",
+      "slug": "kit-6000-tags-modelos-brancos",
+      "description": "Kit com 6.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. Mix de modelos e medidas conforme a composição visual de referência.",
+      "category": "kits",
+      "type": "kit",
+      "price": "849.90",
+      "isActive": 1,
+      "isFeatured": 0,
+      "sortOrder": 10,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 11,
+      "name": "Kit 4.000 Tags — Mix Rosé",
+      "slug": "kit-4000-tags-modelos-rosa",
+      "description": "Kit com 4.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. A composição apresenta os formatos e medidas visíveis na arte.",
+      "category": "kits",
+      "type": "kit",
+      "price": "649.90",
+      "isActive": 1,
+      "isFeatured": 0,
+      "sortOrder": 11,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 12,
+      "name": "Kit 4.000 Tags — Richelle Preto",
+      "slug": "kit-4000-tags-richelle-preto",
+      "description": "Kit com 4.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. A composição reúne os formatos mostrados na arte Richelle.",
+      "category": "kits",
+      "type": "kit",
+      "price": "649.90",
+      "isActive": 1,
+      "isFeatured": 0,
+      "sortOrder": 12,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 13,
+      "name": "Kit 6.000 Tags — Seraph",
+      "slug": "kit-6000-tags-seraph",
+      "description": "Kit com 6.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. A composição reúne os modelos e medidas apresentados na arte Seraph.",
+      "category": "kits",
+      "type": "kit",
+      "price": "649.90",
+      "isActive": 1,
+      "isFeatured": 0,
+      "sortOrder": 13,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 14,
+      "name": "Kit 6.000 Tags — Mix Preto",
+      "slug": "kit-6000-tags-modelos-pretos",
+      "description": "Kit com 6.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. Mix de formatos conforme a referência visual.",
+      "category": "kits",
+      "type": "kit",
+      "price": "849.90",
+      "isActive": 1,
+      "isFeatured": 0,
+      "sortOrder": 14,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 15,
+      "name": "Kit 7.000 Tags — Zeglam",
+      "slug": "kit-7000-tags-zeglam",
+      "description": "Kit com 7.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. A composição segue os modelos e medidas presentes na arte.",
+      "category": "kits",
+      "type": "kit",
+      "price": "849.90",
+      "isActive": 1,
+      "isFeatured": 0,
+      "sortOrder": 15,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 16,
+      "name": "Kit 6.000 Tags — Zeglam",
+      "slug": "kit-6000-tags-zeglam",
+      "description": "Kit com 6.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. A composição segue os modelos e medidas presentes na arte.",
+      "category": "kits",
+      "type": "kit",
+      "price": "849.90",
+      "isActive": 1,
+      "isFeatured": 0,
+      "sortOrder": 16,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 17,
+      "name": "Kit 7.000 Tags — Richelle Marrom",
+      "slug": "kit-7000-tags-richelle-marrom",
+      "description": "Kit com 7.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. A composição reúne os formatos ilustrados na arte Richelle.",
+      "category": "kits",
+      "type": "kit",
+      "price": "849.90",
+      "isActive": 1,
+      "isFeatured": 0,
+      "sortOrder": 17,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 18,
+      "name": "Kit 6.000 Tags — Richelle Dourado",
+      "slug": "kit-6000-tags-richelle-dourado",
+      "description": "Kit com 6.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. Os modelos e medidas acompanham a composição da arte.",
+      "category": "kits",
+      "type": "kit",
+      "price": "649.90",
+      "isActive": 1,
+      "isFeatured": 0,
+      "sortOrder": 18,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 19,
+      "name": "Kit 4.000 Tags — Arketa",
+      "slug": "kit-4000-tags-arketa",
+      "description": "Kit com 4.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. A composição reúne os formatos e medidas visíveis na referência.",
+      "category": "kits",
+      "type": "kit",
+      "price": "649.90",
+      "isActive": 1,
+      "isFeatured": 0,
+      "sortOrder": 19,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 20,
+      "name": "Kit 3.000 Tags — Ousadia",
+      "slug": "kit-3000-tags-ousadia",
+      "description": "Kit com 3.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. A composição reúne os formatos apresentados na arte de referência.",
+      "category": "kits",
+      "type": "kit",
+      "price": "389.90",
+      "isActive": 1,
+      "isFeatured": 0,
+      "sortOrder": 20,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 21,
+      "name": "Kit 5.000 Tags — Mix Lilás",
+      "slug": "kit-5000-tags-lilas",
+      "description": "Kit com 5.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. Os formatos e medidas seguem a referência visual.",
+      "category": "kits",
+      "type": "kit",
+      "price": "849.90",
+      "isActive": 1,
+      "isFeatured": 0,
+      "sortOrder": 21,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 22,
+      "name": "Kit 8.000 Tags — Nari",
+      "slug": "kit-8000-tags-nari",
+      "description": "Kit com 8.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. A composição reúne os modelos e medidas mostrados na arte.",
+      "category": "kits",
+      "type": "kit",
+      "price": "849.90",
+      "isActive": 1,
+      "isFeatured": 0,
+      "sortOrder": 22,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 23,
+      "name": "Kit 9.000 Tags — Nari",
+      "slug": "kit-9000-tags-nari",
+      "description": "Kit com 9.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. A composição reúne os modelos e medidas mostrados na arte.",
+      "category": "kits",
+      "type": "kit",
+      "price": "849.90",
+      "isActive": 1,
+      "isFeatured": 0,
+      "sortOrder": 23,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 24,
+      "name": "Kit 7.000 Tags — Arketa",
+      "slug": "kit-7000-tags-arketa",
+      "description": "Kit com 7.000 tags personalizadas, em papel couché 300 g, impressão 4×4 colorida frente e verso e verniz total na frente. A composição reúne os modelos e medidas mostrados na arte.",
+      "category": "kits",
+      "type": "kit",
+      "price": "849.90",
+      "isActive": 1,
+      "isFeatured": 0,
+      "sortOrder": 24,
+      "createdAt": "2026-08-12T17:15:52.000Z",
+      "updatedAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 30001,
+      "name": "Tags personalizadas",
+      "slug": "componente-tags-personalizadas",
+      "description": "Item técnico de composição usado pelos kits de tags. Não é exibido no catálogo público.",
+      "category": "tags",
+      "type": "product",
+      "price": "0.00",
+      "isActive": 0,
+      "isFeatured": 0,
+      "sortOrder": 999,
+      "createdAt": "2026-08-12T17:19:23.000Z",
+      "updatedAt": "2026-08-12T17:19:23.000Z"
+    },
+    {
+      "id": 30002,
+      "name": "Pingentes personalizados",
+      "slug": "componente-pingentes-personalizados",
+      "description": "Item técnico de composição usado pelos kits com pingentes. Não é exibido no catálogo público.",
+      "category": "tags",
+      "type": "product",
+      "price": "0.00",
+      "isActive": 0,
+      "isFeatured": 0,
+      "sortOrder": 1000,
+      "createdAt": "2026-08-12T17:19:23.000Z",
+      "updatedAt": "2026-08-12T17:19:23.000Z"
+    }
+  ],
+  "images": [
+    {
+      "id": 1,
+      "productId": 1,
+      "storageKey": "kit-2000-tags-brincos",
+      "url": "/manus-storage/zeglam-38585_f7b82280.png",
+      "altText": "Kit 2.000 Tags Brincos",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 4,
+      "productId": 2,
+      "storageKey": "kit-2000-tags-trio",
+      "url": "/manus-storage/zeglam-38586_08e510f8.png",
+      "altText": "Kit 2.000 Tags Trio",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 2,
+      "productId": 3,
+      "storageKey": "kit-2000-tags-brincos-classico",
+      "url": "/manus-storage/zeglam-38587_91c6c9ad.png",
+      "altText": "Kit 2.000 Tags de Brincos",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 3,
+      "productId": 4,
+      "storageKey": "kit-2000-tags-infantil",
+      "url": "/manus-storage/zeglam-38589_0b0dccdd.png",
+      "altText": "Kit 2.000 Tags Infantil",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 22,
+      "productId": 5,
+      "storageKey": "kit-iniciante-1-2000-tags",
+      "url": "/manus-storage/zeglam-38590_26b2587e.png",
+      "altText": "Kit Iniciante 1 — 2.000 Tags",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 23,
+      "productId": 6,
+      "storageKey": "kit-iniciante-2-3000-tags",
+      "url": "/manus-storage/zeglam-38591_29a9fdde.png",
+      "altText": "Kit Iniciante 2 — 3.000 Tags",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 24,
+      "productId": 7,
+      "storageKey": "kit-iniciante-3-5000-tags",
+      "url": "/manus-storage/zeglam-38592_e4e9422a.png",
+      "altText": "Kit Iniciante 3 — 5.000 Tags",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 21,
+      "productId": 8,
+      "storageKey": "kit-eu-desejo-1000-tags-4-pingentes",
+      "url": "/manus-storage/zeglam-38593_072e3045.png",
+      "altText": "Kit Eu Desejo — 1.000 Tags + 4 Pingentes",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 7,
+      "productId": 9,
+      "storageKey": "kit-4000-tags-infantil",
+      "url": "/manus-storage/zeglam-38595_49d1c859.png",
+      "altText": "Kit 4.000 Tags Infantil",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 11,
+      "productId": 10,
+      "storageKey": "kit-6000-tags-modelos-brancos",
+      "url": "/manus-storage/zeglam-38596_0c16fa1f.png",
+      "altText": "Kit 6.000 Tags — Mix Clássico",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 8,
+      "productId": 11,
+      "storageKey": "kit-4000-tags-modelos-rosa",
+      "url": "/manus-storage/zeglam-38598_06eee154.png",
+      "altText": "Kit 4.000 Tags — Mix Rosé",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 9,
+      "productId": 12,
+      "storageKey": "kit-4000-tags-richelle-preto",
+      "url": "/manus-storage/zeglam-38599_3092635e.png",
+      "altText": "Kit 4.000 Tags — Richelle Preto",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 14,
+      "productId": 13,
+      "storageKey": "kit-6000-tags-seraph",
+      "url": "/manus-storage/zeglam-38600_a45b1d31.png",
+      "altText": "Kit 6.000 Tags — Seraph",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 12,
+      "productId": 14,
+      "storageKey": "kit-6000-tags-modelos-pretos",
+      "url": "/manus-storage/zeglam-38602_44585f4f.png",
+      "altText": "Kit 6.000 Tags — Mix Preto",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 18,
+      "productId": 15,
+      "storageKey": "kit-7000-tags-zeglam",
+      "url": "/manus-storage/zeglam-38603_b5b5656f.png",
+      "altText": "Kit 7.000 Tags — Zeglam",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 15,
+      "productId": 16,
+      "storageKey": "kit-6000-tags-zeglam",
+      "url": "/manus-storage/zeglam-38604_b101c580.png",
+      "altText": "Kit 6.000 Tags — Zeglam",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 17,
+      "productId": 17,
+      "storageKey": "kit-7000-tags-richelle-marrom",
+      "url": "/manus-storage/zeglam-68447_24fa721a.png",
+      "altText": "Kit 7.000 Tags — Richelle Marrom",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 13,
+      "productId": 18,
+      "storageKey": "kit-6000-tags-richelle-dourado",
+      "url": "/manus-storage/zeglam-68448_1929b292.png",
+      "altText": "Kit 6.000 Tags — Richelle Dourado",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 6,
+      "productId": 19,
+      "storageKey": "kit-4000-tags-arketa",
+      "url": "/manus-storage/zeglam-68449_b5d2abdd.png",
+      "altText": "Kit 4.000 Tags — Arketa",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 5,
+      "productId": 20,
+      "storageKey": "kit-3000-tags-ousadia",
+      "url": "/manus-storage/zeglam-68451_64d4aa34.png",
+      "altText": "Kit 3.000 Tags — Ousadia",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 10,
+      "productId": 21,
+      "storageKey": "kit-5000-tags-lilas",
+      "url": "/manus-storage/zeglam-68452_bcbd26ed.png",
+      "altText": "Kit 5.000 Tags — Mix Lilás",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 19,
+      "productId": 22,
+      "storageKey": "kit-8000-tags-nari",
+      "url": "/manus-storage/zeglam-68453_db56f7c5.png",
+      "altText": "Kit 8.000 Tags — Nari",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 20,
+      "productId": 23,
+      "storageKey": "kit-9000-tags-nari",
+      "url": "/manus-storage/zeglam-68454_d29ed517.png",
+      "altText": "Kit 9.000 Tags — Nari",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    },
+    {
+      "id": 16,
+      "productId": 24,
+      "storageKey": "kit-7000-tags-arketa",
+      "url": "/manus-storage/zeglam-68455_31298f60.png",
+      "altText": "Kit 7.000 Tags — Arketa",
+      "position": 0,
+      "createdAt": "2026-08-12T17:15:52.000Z"
+    }
+  ],
+  "kitItems": [
+    {
+      "id": 1,
+      "kitProductId": 1,
+      "itemProductId": 30001,
+      "quantity": 2000
+    },
+    {
+      "id": 2,
+      "kitProductId": 3,
+      "itemProductId": 30001,
+      "quantity": 2000
+    },
+    {
+      "id": 3,
+      "kitProductId": 4,
+      "itemProductId": 30001,
+      "quantity": 2000
+    },
+    {
+      "id": 4,
+      "kitProductId": 2,
+      "itemProductId": 30001,
+      "quantity": 2000
+    },
+    {
+      "id": 5,
+      "kitProductId": 20,
+      "itemProductId": 30001,
+      "quantity": 3000
+    },
+    {
+      "id": 6,
+      "kitProductId": 19,
+      "itemProductId": 30001,
+      "quantity": 4000
+    },
+    {
+      "id": 7,
+      "kitProductId": 9,
+      "itemProductId": 30001,
+      "quantity": 4000
+    },
+    {
+      "id": 8,
+      "kitProductId": 11,
+      "itemProductId": 30001,
+      "quantity": 4000
+    },
+    {
+      "id": 9,
+      "kitProductId": 12,
+      "itemProductId": 30001,
+      "quantity": 4000
+    },
+    {
+      "id": 10,
+      "kitProductId": 21,
+      "itemProductId": 30001,
+      "quantity": 5000
+    },
+    {
+      "id": 11,
+      "kitProductId": 10,
+      "itemProductId": 30001,
+      "quantity": 6000
+    },
+    {
+      "id": 12,
+      "kitProductId": 14,
+      "itemProductId": 30001,
+      "quantity": 6000
+    },
+    {
+      "id": 13,
+      "kitProductId": 18,
+      "itemProductId": 30001,
+      "quantity": 6000
+    },
+    {
+      "id": 14,
+      "kitProductId": 13,
+      "itemProductId": 30001,
+      "quantity": 6000
+    },
+    {
+      "id": 15,
+      "kitProductId": 16,
+      "itemProductId": 30001,
+      "quantity": 6000
+    },
+    {
+      "id": 16,
+      "kitProductId": 24,
+      "itemProductId": 30001,
+      "quantity": 7000
+    },
+    {
+      "id": 17,
+      "kitProductId": 17,
+      "itemProductId": 30001,
+      "quantity": 7000
+    },
+    {
+      "id": 18,
+      "kitProductId": 15,
+      "itemProductId": 30001,
+      "quantity": 7000
+    },
+    {
+      "id": 19,
+      "kitProductId": 22,
+      "itemProductId": 30001,
+      "quantity": 8000
+    },
+    {
+      "id": 20,
+      "kitProductId": 23,
+      "itemProductId": 30001,
+      "quantity": 9000
+    },
+    {
+      "id": 21,
+      "kitProductId": 8,
+      "itemProductId": 30001,
+      "quantity": 1000
+    },
+    {
+      "id": 22,
+      "kitProductId": 5,
+      "itemProductId": 30001,
+      "quantity": 2000
+    },
+    {
+      "id": 23,
+      "kitProductId": 6,
+      "itemProductId": 30001,
+      "quantity": 3000
+    },
+    {
+      "id": 24,
+      "kitProductId": 7,
+      "itemProductId": 30001,
+      "quantity": 5000
+    },
+    {
+      "id": 25,
+      "kitProductId": 8,
+      "itemProductId": 30002,
+      "quantity": 4
+    }
+  ],
+  "settings": {
+    "id": 1,
+    "companyName": "Criativa Express",
+    "whatsappNumber": "5561993629392",
+    "whatsappGreeting": "Olá! Gostaria de fazer um pedido.",
+    "updatedAt": "2026-08-12T15:05:00.000Z"
+  }
+}

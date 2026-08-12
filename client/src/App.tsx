@@ -7,6 +7,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import ProductDetail from "./pages/ProductDetail";
+import AdminLoginPage from "./pages/AdminLoginPage";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -14,6 +15,7 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/produto/:slug"} component={ProductDetail} />
+      <Route path={"/admin/login"} component={AdminLoginPage} />
       <Route path={"/admin"} component={AdminPage} />
       <Route path={"/admin/configuracoes"} component={AdminPage} />
       <Route path={"/404"} component={NotFound} />

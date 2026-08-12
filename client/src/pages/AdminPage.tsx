@@ -34,7 +34,11 @@ export default function AdminPage() {
 }
 
 function AdminAccess() {
-  return <div className="flex min-h-screen items-center justify-center bg-paper p-6"><div className="max-w-md rounded-3xl border border-[#e5d8cb] bg-white p-8 text-center soft-shadow"><h1 className="font-display text-3xl">Área da loja</h1><p className="mt-3 text-sm leading-relaxed text-ink/65">Entre para administrar catálogo, kits, preços, fotos e mensagens de pedido.</p><Button className="mt-6 rounded-full bg-wine px-6 text-white hover:bg-[#522631]" onClick={startLogin}>Entrar com segurança</Button><Link href="/" className="mt-4 flex items-center justify-center gap-2 text-sm font-bold text-wine"><ArrowLeft className="h-4 w-4" />Voltar ao catálogo</Link></div></div>;
+  const openLogin = () => {
+    if (import.meta.env.VITE_AUTH_MODE === "local") window.location.assign("/admin/login");
+    else startLogin();
+  };
+  return <div className="flex min-h-screen items-center justify-center bg-paper p-6"><div className="max-w-md rounded-3xl border border-[#e5d8cb] bg-white p-8 text-center soft-shadow"><h1 className="font-display text-3xl">Área da loja</h1><p className="mt-3 text-sm leading-relaxed text-ink/65">Entre para administrar catálogo, kits, preços, fotos e mensagens de pedido.</p><Button className="mt-6 rounded-full bg-wine px-6 text-white hover:bg-[#522631]" onClick={openLogin}>Entrar com segurança</Button><Link href="/" className="mt-4 flex items-center justify-center gap-2 text-sm font-bold text-wine"><ArrowLeft className="h-4 w-4" />Voltar ao catálogo</Link></div></div>;
 }
 
 function ProductManager() {

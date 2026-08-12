@@ -1,8 +1,7 @@
-// Preconfigured storage helpers for Manus WebDev templates
-// Uploads via Forge Server presigned URL to S3 (PUT direct).
-// Downloads return /manus-storage/{key} paths served via 307 redirect.
-
 import { ENV } from "./_core/env";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { isRailwayRuntime } from "./railway/runtime";
 
 function getForgeConfig() {
   const forgeUrl = ENV.forgeApiUrl;
@@ -28,11 +27,26 @@ function appendHashSuffix(relKey: string): string {
   return `${relKey.slice(0, lastDot)}_${hash}${relKey.slice(lastDot)}`;
 }
 
+function getLocalUploadPath(key: string) {
+  const directory = path.resolve(process.env.UPLOADS_DIR || path.join(process.cwd(), "uploads"));
+  const filePath = path.resolve(directory, key);
+  if (!filePath.startsWith(`${directory}${path.sep}`)) throw new Error("Caminho de arquivo inválido.");
+  return { directory, filePath };
+}
+
 export async function storagePut(
   relKey: string,
   data: Buffer | Uint8Array | string,
   contentType = "application/octet-stream",
 ): Promise<{ key: string; url: string }> {
+  if (isRailwayRuntime()) {
+    const key = appendHashSuffix(normalizeKey(relKey));
+    const { directory, filePath } = getLocalUploadPath(key);
+    await mkdir(directory, { recursive: true });
+    await mkdir(path.dirname(filePath), { recursive: true });
+    await writeFile(filePath, data);
+    return { key, url: `/uploads/${key}` };
+  }
   const { forgeUrl, forgeKey } = getForgeConfig();
   const key = appendHashSuffix(normalizeKey(relKey));
 
@@ -73,10 +87,12 @@ export async function storagePut(
 
 export async function storageGet(relKey: string): Promise<{ key: string; url: string }> {
   const key = normalizeKey(relKey);
+  if (isRailwayRuntime()) return { key, url: `/uploads/${key}` };
   return { key, url: `/manus-storage/${key}` };
 }
 
 export async function storageGetSignedUrl(relKey: string): Promise<string> {
+  if (isRailwayRuntime()) return `/uploads/${normalizeKey(relKey)}`;
   const { forgeUrl, forgeKey } = getForgeConfig();
   const key = normalizeKey(relKey);
 
