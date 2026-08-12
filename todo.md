@@ -43,11 +43,13 @@
 - [x] Mover os controles de produto anterior e próximo para as laterais da imagem principal e remover os cartões de navegação abaixo do detalhe.
 - [x] Remover da página principal o título introdutório e a busca do catálogo, deixando a lista de produtos como foco direto da seção.
 - [x] Preparar a versão atual para o GitHub e confirmar com o usuário antes de substituir a versão principal, preservando o site antigo na branch `backup-site-antigo`.
-- [ ] Avaliar a compatibilidade do aplicativo full-stack com Vercel, preparar a configuração necessária e publicar somente após confirmação final do usuário.
-- [ ] Comparar Railway, Vercel e alternativas de menor custo para definir a hospedagem mais compatível com o servidor, banco, painel e imagens da loja.
-- [ ] Comparar uma arquitetura de menor custo mensal para hospedagem, banco e imagens, mantendo catálogo, painel administrativo e dados persistentes.
+- [x] Avaliar a compatibilidade do aplicativo full-stack com Vercel, preparar a configuração necessária e publicar somente após confirmação final do usuário. Decisão substituída pela implantação de teste no Railway.
+- [x] Comparar Railway, Vercel e alternativas de menor custo para definir a hospedagem mais compatível com o servidor, banco, painel e imagens da loja.
+- [x] Comparar uma arquitetura de menor custo mensal para hospedagem, banco e imagens, mantendo catálogo, painel administrativo e dados persistentes.
 - [ ] Implantar uma versão de teste no plano gratuito do Railway a partir do repositório GitHub, com banco e imagens persistentes configurados antes da publicação.
 - [ ] Configurar a implantação inicial no Railway Free com acompanhamento do crédito mensal e plano de contingência para migração ao Hobby se necessário.
-- [ ] Migrar a arquitetura completa para o Vercel, substituindo autenticação, banco e armazenamento exclusivos do Manus sem perder o catálogo, as fotos ou o painel administrativo.
+- [x] Migrar a arquitetura completa para o Vercel, substituindo autenticação, banco e armazenamento exclusivos do Manus sem perder o catálogo, as fotos ou o painel administrativo. Escopo substituído pela escolha do Railway.
 - [x] Criar o modo Railway com login administrativo local, uploads em volume persistente, inicialização do catálogo exportado e configuração de execução externa.
 - [ ] Criar os serviços Railway de aplicação e MySQL, configurar o volume de fotos, variáveis de produção e a semente do catálogo antes do deploy de teste.
+- [ ] Após validar a nova loja no endereço temporário do Railway, migrar o domínio já configurado no Vercel atualizando apenas os apontamentos DNS necessários.
+- [ ] Corrigir a conversão de datas ISO na semente do Railway, carregar os 24 kits reais no MySQL e validar o catálogo no endereço temporário.

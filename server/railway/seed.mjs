@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { readFile } from "node:fs/promises";
 import mysql from "mysql2/promise";
+import { toMySqlDateTime } from "./seed-dates.mjs";
 
 const databaseUrl = process.env.DATABASE_URL;
 if (!databaseUrl) throw new Error("DATABASE_URL é obrigatório para executar a semente do Railway.");
@@ -45,17 +46,17 @@ await pool.query("TRUNCATE TABLE store_settings");
 await pool.query("SET FOREIGN_KEY_CHECKS = 1");
 
 for (const product of seed.products) {
-  await pool.execute("INSERT INTO products (id, slug, name, description, category, type, price, isActive, isFeatured, sortOrder, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [product.id, product.slug, product.name, product.description, product.category, product.type, product.price, product.isActive, product.isFeatured, product.sortOrder, product.createdAt, product.updatedAt]);
+	await pool.execute("INSERT INTO products (id, slug, name, description, category, type, price, isActive, isFeatured, sortOrder, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [product.id, product.slug, product.name, product.description, product.category, product.type, product.price, product.isActive, product.isFeatured, product.sortOrder, toMySqlDateTime(product.createdAt), toMySqlDateTime(product.updatedAt)]);
 }
 for (const image of seed.images) {
-  const url = image.url.startsWith("/") && legacyOrigin ? `${legacyOrigin}${image.url}` : image.url;
-  await pool.execute("INSERT INTO product_images (id, productId, storageKey, url, altText, position, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?)", [image.id, image.productId, image.storageKey, url, image.altText, image.position, image.createdAt]);
+	const url = image.url.startsWith("/") && legacyOrigin ? `${legacyOrigin}${image.url}` : image.url;
+	await pool.execute("INSERT INTO product_images (id, productId, storageKey, url, altText, position, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?)", [image.id, image.productId, image.storageKey, url, image.altText, image.position, toMySqlDateTime(image.createdAt)]);
 }
 for (const item of seed.kitItems) {
   await pool.execute("INSERT INTO kit_items (id, kitProductId, itemProductId, quantity) VALUES (?, ?, ?, ?)", [item.id, item.kitProductId, item.itemProductId, item.quantity]);
 }
 for (const setting of seed.settings) {
-  await pool.execute("INSERT INTO store_settings (id, companyName, whatsappNumber, whatsappGreeting, updatedAt) VALUES (?, ?, ?, ?, ?)", [setting.id, setting.companyName, setting.whatsappNumber, setting.whatsappGreeting, setting.updatedAt]);
+	await pool.execute("INSERT INTO store_settings (id, companyName, whatsappNumber, whatsappGreeting, updatedAt) VALUES (?, ?, ?, ?, ?)", [setting.id, setting.companyName, setting.whatsappNumber, setting.whatsappGreeting, toMySqlDateTime(setting.updatedAt)]);
 }
 
 await pool.end();
