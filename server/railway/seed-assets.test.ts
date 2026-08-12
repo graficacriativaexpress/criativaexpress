@@ -3,9 +3,9 @@ import { buildSeedAsset, resolveLegacyAssetUrl } from "./seed-assets.mjs";
 
 describe("ativos da semente Railway", () => {
   it("cria um caminho público persistente e seguro para cada arquivo", () => {
-    expect(buildSeedAsset(7, "kits/Tag Rosé.png")).toEqual({
-      relativePath: "seed/7-Tag-Rose.png",
-      publicUrl: "/uploads/seed/7-Tag-Rose.png",
+    expect(buildSeedAsset(7, "/manus-storage/zeglam-38598_06eee154.png")).toEqual({
+      relativePath: "seed/zeglam-38598.png",
+      publicUrl: "/uploads/seed/zeglam-38598.png",
     });
   });
 

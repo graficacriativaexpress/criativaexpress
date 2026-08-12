@@ -22,7 +22,7 @@ await persistSeedAsset({
 
 const persistedImageUrls = new Map();
 for (const image of seed.images) {
-  const asset = buildSeedAsset(image.id, image.storageKey);
+  const asset = buildSeedAsset(image.id, image.url);
   await persistSeedAsset({
     sourceUrl: resolveLegacyAssetUrl(image.url, legacyOrigin),
     destinationPath: join(uploadsDir, asset.relativePath),

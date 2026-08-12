@@ -6,7 +6,7 @@ function safeFilename(value) {
 }
 
 export function buildSeedAsset(id, storageKey) {
-  const filename = `${id}-${safeFilename(basename(storageKey || `asset-${id}`))}`;
+  const filename = safeFilename(basename(storageKey || `asset-${id}`).replace(/_[0-9a-f]{8}(?=\.[^.]+$)/i, ""));
   return {
     relativePath: join("seed", filename),
     publicUrl: `/uploads/seed/${encodeURIComponent(filename)}`,

@@ -12,6 +12,7 @@ Atualizado durante a implantação de teste.
 | Carga inicial do catálogo | Concluída no serviço Railway após as correções cobertas por testes: `26` produtos e `24` imagens reais foram inseridos no MySQL |
 | Banco MySQL | Serviço online e pronto para ser referenciado internamente pela aplicação |
 | Volume de fotos | Recurso `criativaexpress-volume` criado e anexado ao serviço em `/data`; alteração aplicada junto da implantação concluída |
+| Persistência de ativos existentes | A validação externa identificou referências legadas de logo e fotos. As originais foram localizadas em `/home/ubuntu/webdev-static-assets/criativaexpress`, permitindo substituir a cópia bloqueada por uma importação local controlada para `/data/uploads/seed` |
 | Compilação da nova instância | A implantação anterior concluiu sem erro; o Railway recebeu o commit `19218bb`, concluiu a imagem e está na etapa de containers e healthchecks antes da carga final do catálogo |
 | Variáveis de produção | Dez variáveis aplicadas no serviço Railway: banco, login local, diretório de uploads e execução de produção |
 | Semente de catálogo | Concluída uma única vez por conexão SSH interna, sem exposição pública do banco |
