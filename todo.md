@@ -42,4 +42,4 @@
 - [x] Informar na vitrine e no detalhe do produto as condições: até 3x sem juros ou 5% de desconto no PIX à vista.
 - [x] Mover os controles de produto anterior e próximo para as laterais da imagem principal e remover os cartões de navegação abaixo do detalhe.
 - [x] Remover da página principal o título introdutório e a busca do catálogo, deixando a lista de produtos como foco direto da seção.
-- [ ] Preparar a versão atual para o GitHub e confirmar com o usuário antes de excluir permanentemente o repositório antigo.
+- [x] Preparar a versão atual para o GitHub e confirmar com o usuário antes de substituir a versão principal, preservando o site antigo na branch `backup-site-antigo`.
