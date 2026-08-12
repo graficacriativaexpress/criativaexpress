@@ -40,3 +40,4 @@
 - [x] Remover da página pública os links e botões visíveis que direcionam ao painel administrativo, mantendo o acesso protegido em `/admin`.
 - [x] Adicionar controles de produto anterior e próximo na página de detalhe, respeitando a ordem do catálogo.
 - [x] Informar na vitrine e no detalhe do produto as condições: até 3x sem juros ou 5% de desconto no PIX à vista.
+- [x] Mover os controles de produto anterior e próximo para as laterais da imagem principal e remover os cartões de navegação abaixo do detalhe.

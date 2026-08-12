@@ -10,9 +10,11 @@ describe("experiência pública de produto", () => {
     const detail = await readProjectFile("client/src/pages/ProductDetail.tsx");
 
     expect(detail).toContain("trpc.catalog.list.useQuery()");
-    expect(detail).toContain("Produto anterior");
-    expect(detail).toContain("Próximo produto");
-    expect(detail).toContain("Navegação entre produtos");
+    expect(detail).toContain("Produto anterior:");
+    expect(detail).toContain("Próximo produto:");
+    expect(detail).toContain("absolute -left-3 top-1/2");
+    expect(detail).toContain("absolute -right-3 top-1/2");
+    expect(detail).not.toContain("Navegação entre produtos");
   });
 
   it("informa as condições de pagamento na vitrine e no detalhe", async () => {
