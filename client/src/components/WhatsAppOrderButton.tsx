@@ -21,7 +21,7 @@ export default function WhatsAppOrderButton({ compact, ...props }: Props) {
     <Button
       asChild={Boolean(href)}
       disabled={!href}
-      className={`bg-wine text-white hover:bg-[#522631] active:scale-[.97] ${compact ? "h-10 w-10 rounded-full p-0" : "h-12 rounded-full px-5"}`}
+      className={`bg-wine text-white hover:bg-rose active:scale-[.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky ${compact ? "h-10 w-10 rounded-full p-0" : "h-12 rounded-full px-5"}`}
       title={href ? "Pedir pelo WhatsApp" : "Configure o WhatsApp no painel administrativo"}
     >
       {href ? (

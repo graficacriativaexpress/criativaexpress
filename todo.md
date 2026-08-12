@@ -27,3 +27,13 @@
 - [x] Salvar e entregar a versão atualizada com logo e kits.
 - [x] Registrar a composição estruturada de tags e pingentes nos itens de cada kit, usando as quantidades reais fornecidas.
 - [x] Validar no painel administrativo que os kits cadastrados, as fotos e as opções de edição estão disponíveis.
+- [x] Extrair as cores de referência da logo oficial e definir a paleta da marca para a vitrine.
+- [x] Aplicar a paleta inspirada na logo aos componentes, botões, filtros e destaques da loja.
+- [x] Revisar contraste, legibilidade e responsividade da nova paleta em desktop e celular.
+- [x] Salvar e entregar a versão atualizada com a paleta alinhada à logo.
+- [x] Inspecionar as telas públicas para confirmar que botões, filtros, badges e destaques usam a nova paleta da logo.
+- [x] Validar e registrar contraste e legibilidade em textos, botões, filtros e estados hover/focus no desktop e no celular.
+- [x] Inspecionar a página pública de detalhe do produto após a nova paleta e registrar os elementos atualizados.
+- [x] Validar manualmente os estados hover e focus dos principais botões e filtros em desktop e documentar o resultado.
+- [x] Registrar evidências verificáveis de contraste e legibilidade para textos, badges e botões em mobile e desktop.
+- [x] Diagnosticar a falha observada na página pública de detalhe: a URL testada (`/produto/kit-1`) não existe; o detalhe do kit real foi confirmado em `/produto/kit-2000-tags-brincos`.

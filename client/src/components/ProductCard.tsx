@@ -8,14 +8,14 @@ import { CatalogVisual } from "./CatalogVisual";
 export default function ProductCard({ product }: { product: CatalogProduct }) {
   const cover = product.images[0]?.url;
   return (
-    <article className="lift-on-hover group overflow-hidden rounded-[1.35rem] border border-[#e6dacd] bg-[#fffdfa] soft-shadow">
+    <article className="lift-on-hover group overflow-hidden rounded-[1.35rem] border border-wine/15 bg-[#fffdfa] soft-shadow">
       <Link href={`/produto/${product.slug}`} className="block">
         <div className="relative aspect-[4/4.35] overflow-hidden bg-sand">
           <CatalogVisual imageUrl={cover} label={product.name} className="transition-transform duration-300 group-hover:scale-[1.04]" />
-          <span className="absolute left-3 top-3 rounded-full bg-[#fffdfa]/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[.14em] text-wine backdrop-blur">
+          <span className="absolute left-3 top-3 rounded-full border border-wine/15 bg-[#fffdfa]/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[.14em] text-wine backdrop-blur">
             {categoryLabel(product.category)}
           </span>
-          {product.isFeatured && <span className="absolute right-3 top-3 rounded-full bg-gold px-2.5 py-1 text-[10px] font-bold uppercase tracking-[.12em] text-white">Destaque</span>}
+          {product.isFeatured && <span className="absolute right-3 top-3 rounded-full bg-gold px-2.5 py-1 text-[10px] font-bold uppercase tracking-[.12em] text-ink">Destaque</span>}
         </div>
         <div className="p-4 pb-5">
           <div className="flex items-start justify-between gap-3">
