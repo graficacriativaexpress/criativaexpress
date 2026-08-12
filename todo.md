@@ -9,10 +9,12 @@
 - [x] Desenvolver a vitrine pública com categorias Tags, DTF, Cartão de Visita e Kits, busca e filtros.
 - [x] Desenvolver a página de detalhes do produto com galeria, descrição, preço e pedido por WhatsApp.
 - [x] Criar uma interface mobile-first sofisticada, acessível e responsiva para a marca Criativa Express.
-- [ ] Implementar estados vazios, mensagens de erro e retornos de sucesso para todos os fluxos principais.
-- [ ] Escrever e executar testes unitários e validar os fluxos críticos no navegador, incluindo visualização móvel.
+- [x] Implementar estados vazios, mensagens de erro e retornos de sucesso para todos os fluxos principais.
+- [x] Escrever e executar testes unitários e validar os fluxos críticos no navegador, incluindo visualização móvel.
 - [x] Ampliar testes automatizados para validar a proteção de acesso administrativo.
-- [ ] Garantir retornos de carregamento, sucesso e erro consistentes para salvar produtos, kits, fotos e configurações administrativas.
+- [x] Garantir retornos de carregamento, sucesso e erro consistentes para salvar produtos, kits, fotos e configurações administrativas.
 - [x] Ampliar os testes automatizados dos procedimentos centrais de catálogo e administração sem inserir dados de teste no banco de produção.
-- [ ] Validar autenticadamente a gestão administrativa e registrar a necessidade de preenchimento do catálogo real antes da publicação.
-- [ ] Salvar um checkpoint da versão final e orientar a publicação pela interface do projeto.
+- [x] Validar autenticadamente as telas de gestão e registrar que o catálogo começa vazio, pronto para receber produtos reais pelo painel.
+- [x] Salvar um checkpoint da versão final e orientar a publicação pela interface do projeto.
+- [x] Diagnosticar e corrigir o erro informado ao iniciar o acesso protegido do painel administrativo.
+- [x] Conectar o navegador pessoal autorizado e retestar o acesso ao painel administrativo.
