@@ -9,9 +9,9 @@ Atualizado durante a implantação de teste.
 | Aplicativo Railway para GitHub | Acesso salvo e limitado exclusivamente a `graficacriativaexpress/criativaexpress`; retorno ao Railway em andamento |
 | Serviço da aplicação | Criado a partir de `graficacriativaexpress/criativaexpress`; variáveis aplicadas e serviço online confirmado |
 | Endereço temporário | Gerado para validação: `https://criativaexpress-production.up.railway.app`; o domínio existente no Vercel permanece intacto até a aprovação da nova loja |
-| Carga inicial do catálogo | A CLI foi autorizada e a URL pública do MySQL não está habilitada. A execução remota por SSH exige vincular a chave temporária do ambiente seguro à conta Railway; após essa única autorização, será executado uma vez `pnpm railway:seed` |
+| Carga inicial do catálogo | A chave SSH temporária foi vinculada. A primeira execução identificou timestamps ISO incompatíveis com MySQL; a correção e seu teste foram enviados ao GitHub no commit `a0a39b3`, acionando uma nova implantação antes da execução única da semente |
 | Banco MySQL | Serviço online e pronto para ser referenciado internamente pela aplicação |
 | Volume de fotos | Recurso `criativaexpress-volume` criado e anexado ao serviço em `/data`; alteração aplicada junto da implantação concluída |
-| Compilação da nova instância | Instalação das dependências, `pnpm build` e healthcheck concluídos sem erro de compilação visível |
+| Compilação da nova instância | A implantação anterior concluiu sem erro; o Railway recebeu o commit `a0a39b3`, concluiu a imagem e está na etapa de containers e healthchecks antes da carga final do catálogo |
 | Variáveis de produção | Dez variáveis aplicadas no serviço Railway: banco, login local, diretório de uploads e execução de produção |
-| Semente de catálogo | Pendente após a criação do banco |
+| Semente de catálogo | Aguardando o término da implantação automática do commit `a0a39b3` para executar uma única vez a carga corrigida |

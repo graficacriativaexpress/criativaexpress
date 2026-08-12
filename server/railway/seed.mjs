@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { readFile } from "node:fs/promises";
 import mysql from "mysql2/promise";
+import { listSettings } from "./seed-data.mjs";
 import { toMySqlDateTime } from "./seed-dates.mjs";
 
 const databaseUrl = process.env.DATABASE_URL;
@@ -55,7 +56,7 @@ for (const image of seed.images) {
 for (const item of seed.kitItems) {
   await pool.execute("INSERT INTO kit_items (id, kitProductId, itemProductId, quantity) VALUES (?, ?, ?, ?)", [item.id, item.kitProductId, item.itemProductId, item.quantity]);
 }
-for (const setting of seed.settings) {
+for (const setting of listSettings(seed.settings)) {
 	await pool.execute("INSERT INTO store_settings (id, companyName, whatsappNumber, whatsappGreeting, updatedAt) VALUES (?, ?, ?, ?, ?)", [setting.id, setting.companyName, setting.whatsappNumber, setting.whatsappGreeting, toMySqlDateTime(setting.updatedAt)]);
 }
 
