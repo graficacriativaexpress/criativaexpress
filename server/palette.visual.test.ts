@@ -27,4 +27,12 @@ describe("brand palette interface states", () => {
     expect(whatsappButton).toContain("hover:bg-rose");
     expect(whatsappButton).toContain("focus-visible:outline-sky");
   });
+
+  it("does not expose administrative shortcuts in the public storefront", async () => {
+    const home = await readProjectFile("client/src/pages/Home.tsx");
+
+    expect(home).not.toContain('href="/admin"');
+    expect(home).not.toContain("Área da loja");
+    expect(home).not.toContain("Gerenciar loja");
+  });
 });

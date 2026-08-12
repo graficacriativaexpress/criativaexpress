@@ -37,3 +37,4 @@
 - [x] Validar manualmente os estados hover e focus dos principais botões e filtros em desktop e documentar o resultado.
 - [x] Registrar evidências verificáveis de contraste e legibilidade para textos, badges e botões em mobile e desktop.
 - [x] Diagnosticar a falha observada na página pública de detalhe: a URL testada (`/produto/kit-1`) não existe; o detalhe do kit real foi confirmado em `/produto/kit-2000-tags-brincos`.
+- [x] Remover da página pública os links e botões visíveis que direcionam ao painel administrativo, mantendo o acesso protegido em `/admin`.
