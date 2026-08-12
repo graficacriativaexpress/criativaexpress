@@ -18,3 +18,12 @@
 - [x] Salvar um checkpoint da versão final e orientar a publicação pela interface do projeto.
 - [x] Diagnosticar e corrigir o erro informado ao iniciar o acesso protegido do painel administrativo.
 - [x] Conectar o navegador pessoal autorizado e retestar o acesso ao painel administrativo.
+- [x] Inventariar os arquivos e as informações dos kits enviados pelo usuário.
+- [x] Enviar a logo oficial e as fotos dos kits para o armazenamento da vitrine.
+- [x] Aplicar a logo oficial no cabeçalho e nos pontos de marca da loja.
+- [x] Otimizar o enquadramento da logo oficial para leitura adequada nos pontos de marca da vitrine.
+- [x] Cadastrar e organizar os kits reais com fotos, composição descrita, quantidade e preço.
+- [x] Revisar a vitrine de kits e o painel administrativo após o cadastro.
+- [ ] Salvar e entregar a versão atualizada com logo e kits.
+- [x] Registrar a composição estruturada de tags e pingentes nos itens de cada kit, usando as quantidades reais fornecidas.
+- [x] Validar no painel administrativo que os kits cadastrados, as fotos e as opções de edição estão disponíveis.
