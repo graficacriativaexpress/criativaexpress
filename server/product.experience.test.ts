@@ -28,4 +28,13 @@ describe("experiência pública de produto", () => {
       expect(source).toContain("5% de desconto no PIX à vista");
     }
   });
+
+  it("deixa o catálogo acessível diretamente, sem título introdutório ou busca", async () => {
+    const home = await readProjectFile("client/src/pages/Home.tsx");
+
+    expect(home).toContain("catalogCategories.map");
+    expect(home).not.toContain("Encontre o acabamento certo.");
+    expect(home).not.toContain("Busque um produto");
+    expect(home).not.toContain("from \"@/components/ui/input\"");
+  });
 });
