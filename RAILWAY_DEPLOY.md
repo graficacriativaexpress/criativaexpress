@@ -25,3 +25,13 @@ Depois de criar o banco, execute uma única vez `pnpm railway:seed` com as mesma
 ## Limite do plano gratuito
 
 O plano Railway Free deve ser tratado como teste. Acompanhe o consumo de crédito no painel; se o serviço ou MySQL pararem por limite de crédito, faça upgrade antes de divulgar o endereço final.
+
+## Acompanhamento do crédito e contingência
+
+Enquanto a conta estiver no Trial, confira pelo menos uma vez por semana o indicador de dias/crédito restante e a área de uso no painel do Railway. Após o Trial, o plano Free oferece `$1` de crédito mensal; esse valor não acumula. Antes de uma campanha, nova carga de fotos ou divulgação ampla do catálogo, confira novamente o consumo.
+
+Considere mudar para o plano **Hobby** quando ocorrer qualquer um dos seguintes gatilhos: crédito Free restante abaixo de `$0,50`, consumo recorrente superior a aproximadamente 70% do crédito mensal, aviso de suspensão por limite, necessidade de mais armazenamento de volume ou intenção de divulgar o domínio definitivo com previsibilidade maior.
+
+Na referência oficial consultada em agosto de 2026, o Hobby custa **US$ 5/mês** e inclui **US$ 5 de uso de recursos** no ciclo; caso o uso ultrapasse esse crédito, o valor adicional é cobrado pela diferença. A atualização é feita no painel do Railway e preserva o projeto, o MySQL e o volume, portanto não exige migrar o código nem as fotos. Confirme preços e condições no momento da decisão em [Railway Pricing Plans](https://docs.railway.com/pricing/plans).
+
+Antes de qualquer alteração de plano ou manutenção importante, mantenha o repositório GitHub atualizado e exporte um backup do MySQL. Para este catálogo, o repositório já contém a semente dos 24 kits; as fotos novas adicionadas posteriormente devem ser preservadas também pelo volume e pelo backup do banco.
