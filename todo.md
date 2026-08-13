@@ -55,3 +55,12 @@
 - [x] Corrigir a conversão de datas ISO na semente do Railway, carregar os 24 kits reais no MySQL e validar o catálogo no endereço temporário.
 - [x] Copiar logo e fotos existentes para o volume Railway e atualizar a semente para servir imagens persistentes, sem depender dos endereços temporários do Manus.
 - [x] Documentar o acompanhamento manual do crédito Railway e o plano de contingência para eventual migração ao plano Hobby.
+- [ ] Vincular o domínio oficial ao Railway e atualizar os registros DNS correspondentes pelo Registro.br após confirmação final.
+- [ ] Configurar `www.graficacriativaexpress.com.br` no Railway e redirecionar `graficacriativaexpress.com.br` para `www` pelo Registro.br, pois a zona não aceita CNAME no domínio raiz.
+- [ ] Criar a zona gratuita da Cloudflare, configurar os registros Railway e redirecionar o domínio raiz para `www` antes de trocar os servidores DNS no Registro.br.
+- [ ] Configurar `graficacriativaexpress.com.br` sem `www` como domínio principal no Railway e redirecionar `www` para o domínio raiz pela Cloudflare.
+- [ ] Manter `www.graficacriativaexpress.com.br` como domínio principal da loja e redirecionar o domínio raiz para `www` pela Cloudflare.
+- [ ] Inventariar as artes do arquivo `ARTES_FINAL.zip`, identificar os novos kits e registrar os dados de catálogo necessários.
+- [ ] Preparar as imagens dos novos kits em armazenamento persistente e cadastrá-los com título, preço, descrição e composição editáveis no painel.
+- [ ] Testar os novos kits na vitrine, no detalhe, no painel administrativo e na implantação Railway antes da entrega.
+- [ ] Permitir que o painel salve kits independentes sem exigir itens estruturados de composição, mantendo a composição opcional para os kits que a utilizam.

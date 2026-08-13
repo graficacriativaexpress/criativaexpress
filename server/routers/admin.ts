@@ -16,6 +16,7 @@ import {
 import { storagePut } from "../storage";
 import { adminProcedure } from "../adminProcedure";
 import { router } from "../_core/trpc";
+import { validateCatalogEntry } from "../catalogValidation";
 
 const categoryInput = z.enum(catalogCategories.map(item => item.value) as ["tags", "dtf", "cartao_visita", "kits"]);
 const productInput = z.object({
@@ -48,18 +49,7 @@ export const adminRouter = router({
     list: adminProcedure.query(() => listProducts({ includeInactive: true })),
     byId: adminProcedure.input(z.object({ id: z.number().int().positive() })).query(({ input }) => getProductById(input.id)),
     save: adminProcedure.input(productInput).mutation(async ({ input }) => {
-      if (input.type === "kit" && input.category !== "kits") {
-        throw new TRPCError({ code: "BAD_REQUEST", message: "Kits devem usar a categoria Kits." });
-      }
-      if (input.type === "product" && input.category === "kits") {
-        throw new TRPCError({ code: "BAD_REQUEST", message: "A categoria Kits é exclusiva para kits." });
-      }
-      if (input.type === "kit" && input.kitItems.length === 0) {
-        throw new TRPCError({ code: "BAD_REQUEST", message: "Inclua ao menos um item no kit." });
-      }
-      if (new Set(input.kitItems.map(item => item.itemProductId)).size !== input.kitItems.length) {
-        throw new TRPCError({ code: "BAD_REQUEST", message: "Não repita produtos na composição do kit." });
-      }
+      validateCatalogEntry(input);
       return saveProduct(input);
     }),
     delete: adminProcedure.input(z.object({ id: z.number().int().positive() })).mutation(async ({ input }) => {
