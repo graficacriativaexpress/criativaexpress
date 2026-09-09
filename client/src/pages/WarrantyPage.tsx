@@ -18,17 +18,17 @@ const technicalFactors = [
   {
     icon: Thermometer,
     title: "Aquecimento",
-    text: "A temperatura interna da máquina muda do início ao fim da impressão.",
+    text: "Durante a impressão, a temperatura interna da máquina pode variar. Essa mudança pode influenciar a secagem, a aderência e a intensidade da tinta no papel.",
   },
   {
     icon: Droplets,
     title: "Instabilidade da tinta",
-    text: "O fluxo e a viscosidade da tinta sofrem leves alterações ao longo da tiragem.",
+    text: "O fluxo e a viscosidade da tinta podem sofrer pequenas alterações ao longo da tiragem, modificando de forma sutil a quantidade de tinta depositada em cada impressão.",
   },
   {
     icon: Layers3,
     title: "Variação do papel",
-    text: "O papel absorve a umidade do ar e possui microvariações em sua superfície.",
+    text: "O papel pode absorver umidade do ambiente de maneira diferente em cada ponto da folha. Além disso, suas fibras e sua superfície possuem microvariações que podem influenciar a aparência final da cor.",
   },
 ];
 
@@ -108,7 +108,7 @@ export default function WarrantyPage() {
                     <p className="mt-4 text-base leading-relaxed text-ink/72">
                       O processo gráfico envolve fatores físicos, como o aquecimento das máquinas e a absorção do papel. Por isso, pode acontecer uma variação de tonalidade nas cores das tags. Em alguns casos, essa diferença pode chegar a aproximadamente 10%, inclusive dentro de um mesmo lote — algumas tags podem ficar ligeiramente mais claras ou escuras que outras.
                     </p>
-                    <p className="mt-6 text-sm font-bold uppercase tracking-[.14em] text-wine">Pequenas oscilações automáticas</p>
+                    <p className="mt-6 text-sm font-bold uppercase tracking-[.14em] text-wine">Fatores que podem influenciar a tonalidade</p>
                     <div className="mt-4 space-y-3">
                       {technicalFactors.map(({ icon: Icon, title, text }) => (
                         <div key={title} className="flex gap-3 rounded-xl bg-paper/80 p-4">
