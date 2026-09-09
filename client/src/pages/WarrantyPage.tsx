@@ -106,7 +106,7 @@ export default function WarrantyPage() {
                   <div className="min-w-0">
                     <h2 className="font-display text-3xl leading-tight">Variação de lote</h2>
                     <p className="mt-4 text-base leading-relaxed text-ink/72">
-                      O processo gráfico envolve fatores físicos, como o aquecimento das máquinas e a absorção do papel. Por isso, pode ocorrer uma variação de tonalidade de até 10% nas cores das tags. Essa oscilação é uma característica normal do processo de impressão e pode acontecer inclusive dentro de um mesmo lote — algumas tags podem ficar ligeiramente mais claras ou escuras que outras.
+                      O processo gráfico envolve fatores físicos, como o aquecimento das máquinas e a absorção do papel. Por isso, pode acontecer uma variação de tonalidade nas cores das tags. Em alguns casos, essa diferença pode chegar a aproximadamente 10%, inclusive dentro de um mesmo lote — algumas tags podem ficar ligeiramente mais claras ou escuras que outras.
                     </p>
                     <p className="mt-6 text-sm font-bold uppercase tracking-[.14em] text-wine">Pequenas oscilações automáticas</p>
                     <div className="mt-4 space-y-3">
@@ -120,7 +120,7 @@ export default function WarrantyPage() {
                       ))}
                     </div>
                     <p className="mt-6 rounded-xl border border-wine/10 bg-white/55 p-4 text-sm leading-relaxed text-ink/72">
-                      Por ser uma limitação técnica comum a qualquer gráfica, essa variação não é considerada defeito e não está coberta pela garantia de reimpressão. Fique tranquilo(a): cuidamos de cada detalhe do arquivo para que suas tags fiquem lindas e o mais próximas possível do resultado esperado.
+                      Esses 10% são apenas uma referência técnica: não significam que toda produção terá essa variação, nem representam um percentual exato ou garantido. Como não é possível prever ou controlar totalmente esse comportamento em cada lote, a variação não é considerada defeito e não está coberta pela garantia de reimpressão. Fique tranquilo(a): cuidamos de cada detalhe do arquivo para que suas tags fiquem lindas e o mais próximas possível do resultado esperado.
                     </p>
                   </div>
                 </div>
