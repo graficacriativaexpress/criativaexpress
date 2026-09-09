@@ -90,9 +90,9 @@ export default function WarrantyPage() {
                     <CheckCircle2 className="h-5 w-5" />
                   </div>
                   <div>
-                    <h2 className="font-display text-3xl leading-tight">Telas x papel</h2>
+                    <h2 className="font-display text-3xl leading-tight">Telas vs. Papel</h2>
                     <p className="mt-4 text-base leading-relaxed text-ink/72">
-                      As cores que vemos nas telas de celulares e computadores são geradas por luz (padrão RGB), enquanto a impressão física utiliza tinta (padrão CMYK). Por isso, sempre ocorrem variações de tom quando a arte sai da tela e vai para o papel.
+                      As cores que vemos nas telas de celulares e computadores são geradas por luz (padrão RGB), enquanto a impressão física utiliza tinta (padrão CMYK). Por isso, sempre ocorrem pequenas variações de tom quando a arte sai da tela e vai para o papel.
                     </p>
                   </div>
                 </div>
