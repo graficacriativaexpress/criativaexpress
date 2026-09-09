@@ -107,7 +107,7 @@ export default function WarrantyPage() {
                   <div className="min-w-0">
                     <h2 className="font-display text-3xl leading-tight">Variação de lote</h2>
                     <p className="mt-4 text-base leading-relaxed text-ink/72">
-                      O processo gráfico envolve fatores físicos, como o aquecimento das máquinas e a absorção do papel. Por isso, pode acontecer uma variação de tonalidade nas cores das tags. Em alguns casos, essa diferença pode chegar a aproximadamente 10%, inclusive dentro de um mesmo lote — algumas tags podem ficar ligeiramente mais claras ou escuras que outras.
+                      O processo gráfico envolve fatores físicos, como o aquecimento das máquinas e a absorção do papel. Por isso, pode ocorrer uma pequena variação de tonalidade nas cores das tags. Em alguns casos, essa diferença pode se aproximar de 10%, inclusive dentro de um mesmo lote — algumas tags podem ficar ligeiramente mais claras ou mais escuras do que outras. Esse percentual é apenas uma referência aproximada e não representa uma variação exata ou garantida em toda produção.
                     </p>
                     <p className="mt-6 text-sm font-bold uppercase tracking-[.14em] text-wine">Fatores que podem influenciar a tonalidade</p>
                     <div className="mt-4 space-y-3">
