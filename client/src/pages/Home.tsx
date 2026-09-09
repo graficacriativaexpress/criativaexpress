@@ -30,12 +30,13 @@ export default function Home() {
           <nav className="hidden items-center gap-6 text-sm font-semibold text-ink/70 md:flex">
             <a href="#catalogo" className="hover:text-wine">Catálogo</a>
             <a href="#como-pedir" className="hover:text-wine">Como pedir</a>
+            <a href="/garantia" className="hover:text-wine">Garantia</a>
           </nav>
           <Button variant="ghost" size="icon" className="rounded-full md:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menu">
             {menuOpen ? <X /> : <Menu />}
           </Button>
         </div>
-        {menuOpen && <nav className="container flex flex-col gap-4 border-t border-wine/15 py-5 text-sm font-semibold md:hidden"><a href="#catalogo" onClick={() => setMenuOpen(false)}>Catálogo</a><a href="#como-pedir" onClick={() => setMenuOpen(false)}>Como pedir</a></nav>}
+        {menuOpen && <nav className="container flex flex-col gap-4 border-t border-wine/15 py-5 text-sm font-semibold md:hidden"><a href="#catalogo" onClick={() => setMenuOpen(false)}>Catálogo</a><a href="#como-pedir" onClick={() => setMenuOpen(false)}>Como pedir</a><a href="/garantia" onClick={() => setMenuOpen(false)}>Garantia</a></nav>}
       </header>
 
       <main>
@@ -64,7 +65,8 @@ export default function Home() {
 
         <section id="como-pedir" className="border-y border-wine/15 bg-sand"><div className="container grid gap-7 py-14 sm:py-18 md:grid-cols-3"><div><p className="text-xs font-bold uppercase tracking-[.18em] text-gold">Atendimento simples</p><h2 className="mt-2 font-display text-4xl leading-none">Escolha. <em className="font-normal text-wine">Peça.</em> Encante.</h2></div><div className="rounded-2xl border-t-4 border-sky bg-white/75 p-5"><span className="font-display text-3xl text-wine">01</span><p className="mt-5 font-semibold">Navegue pelo catálogo</p><p className="mt-1 text-sm leading-relaxed text-ink/65">Veja detalhes, materiais e valores de cada peça.</p></div><div className="rounded-2xl border-t-4 border-gold bg-white/75 p-5"><span className="font-display text-3xl text-wine">02</span><p className="mt-5 font-semibold">Envie pelo WhatsApp</p><p className="mt-1 text-sm leading-relaxed text-ink/65">O pedido já sai organizado com o produto e o valor escolhidos.</p></div></div></section>
       </main>
-      <footer className="bg-ink text-[#f8f4ee]"><div className="container flex flex-col gap-5 py-9 sm:flex-row sm:items-end sm:justify-between"><div><img src={logoUrl} alt="Criativa Express" className="h-14 w-36 object-contain object-left brightness-0 invert" /><p className="mt-1 text-xs tracking-wide text-white/55">Produtos que deixam marcas.</p></div><div className="flex items-center gap-3"><span className="text-xs text-white/55">Precisa de algo personalizado?</span><WhatsAppOrderButton compact productName="Atendimento personalizado" price="0" isKit={false} companyName={companyName} whatsappNumber={settings?.whatsappNumber} whatsappGreeting="Olá! Quero conversar sobre um projeto personalizado." /></div></div></footer>
+      <footer className="bg-ink text-[#f8f4ee]"><div className="container flex flex-col gap-5 py-9 sm:flex-row sm:items-end sm:justify-between"><div><img src={logoUrl} alt="Criativa Express" className="h-14 w-36 object-contain object-left brightness-0 invert" /><p className="mt-1 text-xs tracking-wide text-white/55">Produtos que deixam marcas.</p></div><div className="flex flex-wrap items-center justify-end gap-3"><a href="/garantia" className="text-xs font-semibold text-white/75 transition hover:text-white">Garantia</a><span className="text-xs text-white/55">Precisa de algo personalizado?</span><WhatsAppOrderButton compact productName="Atendimento personalizado" price="0" isKit={false} companyName={companyName} whatsappNumber={settings?.whatsappNumber} whatsappGreeting="Olá! Quero conversar sobre um projeto personalizado." /></div>
+</div></footer>
     </div>
   );
 }
