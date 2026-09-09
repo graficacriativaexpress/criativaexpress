@@ -119,6 +119,9 @@ export default function WarrantyPage() {
                         </div>
                       ))}
                     </div>
+                    <p className="mt-6 rounded-xl border border-wine/10 bg-white/55 p-4 text-sm leading-relaxed text-ink/72">
+                      Por ser uma limitação técnica universal de qualquer gráfica, essa variação sutil não é considerada defeito e não está coberta pela garantia de reimpressão. Fique tranquilo(a), pois cuidamos de cada detalhe do arquivo para que suas tags fiquem lindas e o mais próximas possível do esperado!
+                    </p>
                   </div>
                 </div>
               </article>
@@ -178,4 +181,3 @@ export default function WarrantyPage() {
     </div>
   );
 }
-
