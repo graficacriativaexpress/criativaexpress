@@ -68,9 +68,9 @@ export default function WarrantyPage() {
           </div>
         </section>
 
-        <section className="container max-w-5xl py-14 sm:py-20">
-          <div className="grid gap-6 lg:grid-cols-[.82fr_1.18fr] lg:items-start">
-            <aside className="rounded-[1.6rem] border-t-4 border-sky bg-white/80 p-6 soft-shadow sm:p-8 lg:sticky lg:top-24">
+        <section className="container max-w-4xl py-14 sm:py-20">
+          <div className="mx-auto flex max-w-3xl flex-col gap-6">
+            <aside className="rounded-[1.6rem] border-t-4 border-sky bg-white/80 p-6 soft-shadow sm:p-8">
               <ShieldCheck className="h-10 w-10 text-wine" />
               <h2 className="mt-5 font-display text-3xl leading-tight">Cores na tela e na impressão</h2>
               <p className="mt-4 text-sm leading-relaxed text-ink/68">
@@ -83,7 +83,7 @@ export default function WarrantyPage() {
               </p>
             </aside>
 
-            <div className="space-y-6">
+            <div className="contents">
               <article className="rounded-[1.6rem] border border-wine/15 bg-white/75 p-6 sm:p-8">
                 <div className="flex items-start gap-4">
                   <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-sky/15 text-sky">
