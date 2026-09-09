@@ -2,6 +2,7 @@ import {
   ArrowLeft,
   CheckCircle2,
   Droplets,
+  FileCheck2,
   Layers3,
   MessageCircle,
   ShieldCheck,
@@ -126,6 +127,26 @@ export default function WarrantyPage() {
                 </div>
               </article>
 
+              <article className="rounded-[1.6rem] border border-wine/15 bg-white/75 p-6 sm:p-8">
+                <div className="flex items-start gap-4">
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-sky/15 text-sky">
+                    <FileCheck2 className="h-5 w-5" />
+                  </div>
+                  <div className="min-w-0">
+                    <h2 className="font-display text-3xl leading-tight">Como enviar sua logomarca</h2>
+                    <p className="mt-4 text-base leading-relaxed text-ink/72">
+                      Para obter um resultado mais fiel, envie sua logomarca preferencialmente em PDF vetorizado ou PNG com fundo transparente. Arquivos vetorizados preservam melhor os detalhes e permitem um ajuste mais preciso para a impressão.
+                    </p>
+                    <p className="mt-4 text-base leading-relaxed text-ink/72">
+                      Se você tiver um manual de identidade visual, envie também as referências de cores em CMYK. Esse padrão foi desenvolvido para a impressão e ajuda a chegar a uma tonalidade mais próxima da cor desejada.
+                    </p>
+                    <p className="mt-4 rounded-xl bg-sand/70 p-4 text-sm font-semibold leading-relaxed text-ink/75">
+                      Arquivos e cores em RGB são próprios para telas e podem sofrer alterações quando convertidos para impressão. Por isso, não é possível garantir a reprodução exata de cores enviadas somente em RGB.
+                    </p>
+                  </div>
+                </div>
+              </article>
+
               <article className="rounded-[1.6rem] border-2 border-wine/20 bg-wine p-6 text-white shadow-xl shadow-wine/15 sm:p-8">
                 <div className="flex items-start gap-4">
                   <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/15 text-white">
@@ -134,7 +155,7 @@ export default function WarrantyPage() {
                   <div>
                     <h2 className="font-display text-3xl leading-tight">Nossa garantia</h2>
                     <p className="mt-4 text-base leading-relaxed text-white/82">
-                      Nossa garantia cobre defeitos graves de impressão, manchas acentuadas ou erros de corte. No entanto, por limitações técnicas universais de qualquer gráfica, a variação de até 10% nas tonalidades não é considerada defeito e não dá direito à reimpressão.
+                      Nossa garantia cobre defeitos graves de impressão, manchas acentuadas ou erros de corte. No entanto, por limitações técnicas comuns ao processo gráfico, pequenas variações de tonalidade — inclusive as que se aproximem da referência técnica de 10% — não são consideradas defeito e não dão direito à reimpressão.
                     </p>
                   </div>
                 </div>
